@@ -6,8 +6,8 @@
 script/source = "extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -200.0
+const SPEED = 200.0
+const JUMP_VELOCITY = -300.0
 
 
 func _physics_process(delta: float) -> void:
@@ -26,6 +26,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if Input.is_action_pressed(\"right\"):
+		$Ninja.flip_h = false
+	if Input.is_action_pressed(\"left\"):
+		$Ninja.flip_h = true
 
 	move_and_slide()
 "
@@ -38,7 +43,7 @@ collision_mask = 2
 script = SubResource("GDScript_3vyb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -1)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -46,5 +51,5 @@ offset = Vector2(0, -16)
 position_smoothing_enabled = true
 
 [node name="Ninja" type="Sprite2D" parent="."]
-position = Vector2(4, 0)
+position = Vector2(0, -1)
 texture = ExtResource("1_3vyb7")
