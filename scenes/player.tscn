@@ -48,8 +48,8 @@ shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -16)
-position_smoothing_enabled = true
 
 [node name="Ninja" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
 texture = ExtResource("1_3vyb7")
+offset = Vector2(0.5, -0.5)
