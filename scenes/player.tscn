@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bncrlqrpm83hi"]
+[gd_scene load_steps=4 format=3 uid="uid://bncrlqrpm83hi"]
 
 [ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="2_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 
@@ -13,3 +14,8 @@ shape = SubResource("RectangleShape2D_g2els")
 position = Vector2(5.00002, 11)
 scale = Vector2(1.05, 1.038)
 texture = ExtResource("1_3vyb7")
+
+[node name="Tree1" type="Sprite2D" parent="."]
+position = Vector2(1106, -486)
+scale = Vector2(13.235, 18.125)
+texture = ExtResource("2_g2els")
