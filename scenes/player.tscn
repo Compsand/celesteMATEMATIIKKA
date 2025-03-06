@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bncrlqrpm83hi"]
 
-[ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="1_3vyb7"]
 
 [sub_resource type="GDScript" id="GDScript_3vyb7"]
 script/source = "extends CharacterBody2D
@@ -31,19 +31,20 @@ func _physics_process(delta: float) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(13, 14)
 
 [node name="player" type="CharacterBody2D"]
 collision_mask = 2
 script = SubResource("GDScript_3vyb7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9.77516e-06, 0.0800111)
-scale = Vector2(0.04, 0.03968)
-texture = ExtResource("1_3vyb7")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -32)
 position_smoothing_enabled = true
+
+[node name="Ninja" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+texture = ExtResource("1_3vyb7")
