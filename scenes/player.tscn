@@ -33,6 +33,11 @@ func _physics_process(delta: float) -> void:
 		$Ninja.flip_h = true
 
 	move_and_slide()
+
+
+func _on_killbox_area_entered(area: Area2D) -> void:
+	print(\"skill issue\")
+	position = Vector2(0,0)
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -53,3 +58,13 @@ offset = Vector2(0, -16)
 position = Vector2(0, -1)
 texture = ExtResource("1_3vyb7")
 offset = Vector2(0.5, -0.5)
+
+[node name="killbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="killbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_g2els")
+
+[connection signal="area_entered" from="killbox" to="." method="_on_killbox_area_entered"]
