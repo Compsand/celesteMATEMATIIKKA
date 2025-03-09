@@ -9,35 +9,82 @@ script/source = "extends CharacterBody2D
 const SPEED = 200.0
 const JUMP_VELOCITY = -300.0
 
+var mathMode = bool(false)
+
+var math1 = 0
+var math2 = 0
+var correctAnswer = 0
+
+func KILL():
+	print(\"skill issue\")
+	position = Vector2(0,0)
+	if mathMode == true:
+		mathMode = false
+		print(\"math was too hard, killed self\")
+
+func genMath():
+	var math1 = randi() % 8 + 2
+	var math2 = randi() % 8 + 2
+	$Camera2D/mathSquare/mathQuestion.text = str(math1,\"*\",math2)
+	$Camera2D/mathSquare/mathField.text = \"\"
+	correctAnswer = math1*math2
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed(\"jump\") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if mathMode == false:
+		$Camera2D/mathSquare.visible = 0
+		if Input.is_action_just_pressed(\"jump\") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis(\"left\", \"right\")
-	if direction:
-		velocity.x = direction * SPEED
+		var direction := Input.get_axis(\"left\", \"right\")
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
+		$Camera2D/mathSquare.visible = 1
 	if Input.is_action_pressed(\"right\"):
 		$Ninja.flip_h = false
 	if Input.is_action_pressed(\"left\"):
 		$Ninja.flip_h = true
 
+	if Input.is_action_just_pressed(\"suicide\"):
+		KILL()
+
+#Enabling and disabling of math mode
+	if Input.is_action_just_pressed(\"debug_math\"):
+		if mathMode == true:
+			print(\"do the MATH you lazy ass!!!!!!!!\")
+		else:
+			mathMode = true
+			genMath()
+			print(\"math ENABLED\")
+			
+
+	if mathMode == true:
+		velocity.x = 0
+
 	move_and_slide()
 
+	if position.y > 250:
+		KILL()
 
-func _on_killbox_area_entered(area: Area2D) -> void:
-	print(\"skill issue\")
-	position = Vector2(0,0)
+func _on_killbox_area_entered(_area: Area2D) -> void:
+	KILL()
+
+
+func _on_submit_button_pressed() -> void:
+	if $Camera2D/mathSquare/mathField.text == str(correctAnswer):
+		mathMode = false
+	else:
+		print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
+		$Camera2D/mathSquare/mathField.text = \"WRONG\"
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -50,9 +97,6 @@ script = SubResource("GDScript_3vyb7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g2els")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2(0, -16)
 
 [node name="Ninja" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
@@ -67,4 +111,45 @@ collision_mask = 8
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g2els")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -16)
+
+[node name="mathSquare" type="ColorRect" parent="Camera2D"]
+visible = false
+offset_left = -95.0
+offset_top = -67.0
+offset_right = 95.0
+offset_bottom = 31.0
+color = Color(0.2484, 0.2484, 0.2484, 1)
+
+[node name="MathTitle" type="RichTextLabel" parent="Camera2D/mathSquare"]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 29.0
+text = "IT'S MATH TIME!!!!!!!!"
+horizontal_alignment = 1
+
+[node name="mathQuestion" type="RichTextLabel" parent="Camera2D/mathSquare"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 190.0
+offset_bottom = 63.0
+text = "math qyestio not workin"
+horizontal_alignment = 1
+
+[node name="mathField" type="TextEdit" parent="Camera2D/mathSquare"]
+offset_left = 3.0
+offset_top = 64.0
+offset_right = 117.0
+offset_bottom = 95.0
+placeholder_text = "answer"
+
+[node name="submitButton" type="Button" parent="Camera2D/mathSquare"]
+offset_left = 119.0
+offset_top = 64.0
+offset_right = 187.0
+offset_bottom = 95.0
+text = "SUBMIT"
+
 [connection signal="area_entered" from="killbox" to="." method="_on_killbox_area_entered"]
+[connection signal="pressed" from="Camera2D/mathSquare/submitButton" to="." method="_on_submit_button_pressed"]

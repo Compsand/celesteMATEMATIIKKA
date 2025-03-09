@@ -32,15 +32,13 @@ physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_3yr0r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxeu4"]
-size = Vector2(15, 20)
+size = Vector2(9.5, 71)
 
 [node name="testLevel" type="Node2D"]
 
 [node name="Tree2" type="Sprite2D" parent="."]
 position = Vector2(103, -163)
 texture = ExtResource("1_qxeu4")
-
-[node name="player" parent="." instance=ExtResource("1_1ps0d")]
 
 [node name="Tree1" type="Sprite2D" parent="."]
 position = Vector2(73, -16)
@@ -50,10 +48,12 @@ texture = ExtResource("1_qxeu4")
 tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAAAHAAEAAAACAAAAAAAGAAEAAAABAAAAAAAFAAEAAAABAAAAAAAEAAEAAAABAAAAAAADAAEAAAABAAAAAAACAAEAAAABAAAAAAABAAEAAAABAAAAAAAAAAEAAAABAAAAAAD//wEAAAABAAAAAAD//wIAAAABAAIAAAAAAAIAAAABAAIAAAABAAIAAAABAAIAAAACAAIAAAABAAIAAAADAAIAAAABAAIAAAAEAAIAAAABAAIAAAAFAAIAAAABAAIAAAAGAAIAAAABAAIAAAAHAAIAAAACAAIAAAD+/wIAAAAAAAIAAAAJAP//AAAAAAAAAAAKAP//AAABAAAAAAALAP//AAABAAAAAAAMAP//AAABAAAAAAANAP//AAABAAAAAAAOAP//AAACAAAAAAAOAAAAAAACAAIAAAAJAAAAAAAAAAIAAAAKAAAAAAABAAIAAAALAAAAAAABAAIAAAAMAAAAAAABAAIAAAANAAAAAAABAAIAAAANAPz/AAADAAAAAAAKAPr/AAADAAAAAAAMAP3/AAADAAAAAAAIAPn/AAACAAAAAAAIAPr/AAACAAIAAAAHAPn/AAABAAAAAAAGAPn/AAABAAAAAAAFAPn/AAABAAAAAAADAPn/AAABAAAAAAACAPn/AAABAAAAAAABAPn/AAABAAAAAAAAAPn/AAAAAAAAAAAAAPr/AAAAAAIAAAABAPr/AAABAAIAAAACAPr/AAABAAIAAAADAPr/AAABAAIAAAAFAPr/AAABAAIAAAAGAPr/AAABAAIAAAAHAPr/AAABAAIAAAAEAPr/AAADAAAAAAAEAPn/AAADAAAAAAA=")
 tile_set = SubResource("TileSet_ashii")
 
+[node name="player" parent="." instance=ExtResource("1_1ps0d")]
+
 [node name="killzone" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
-position = Vector2(176.5, -30)
+position = Vector2(-41.75, -19.5)
 shape = SubResource("RectangleShape2D_qxeu4")
