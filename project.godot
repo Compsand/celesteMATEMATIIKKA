@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="celesteMATEMATIIKKA"
-config/version="Build 1"
+config/version="Build_1"
 run/main_scene="uid://huf13jgjrx20"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.921569, 0.776471, 1, 1)
