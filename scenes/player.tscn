@@ -1,6 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bncrlqrpm83hi"]
+[gd_scene load_steps=9 format=3 uid="uid://bncrlqrpm83hi"]
 
 [ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="1_3vyb7"]
+[ext_resource type="AudioStream" uid="uid://bem6kvmemvvnx" path="res://resources/sfx/wasap.wav" id="2_dqkch"]
+[ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="2_g2els"]
+[ext_resource type="AudioStream" uid="uid://cuwknbd3b2vbo" path="res://resources/music/ninjaSong.wav" id="3_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://kp7u5bs4x5sa" path="res://resources/music/mathSong.wav" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://cy8xai10fxbc4" path="res://resources/sfx/mathWarning.wav" id="6_tuyoq"]
 
 [sub_resource type="GDScript" id="GDScript_3vyb7"]
 script/source = "extends CharacterBody2D
@@ -10,6 +15,9 @@ const SPEED = 200.0
 const JUMP_VELOCITY = -300.0
 
 var mathMode = bool(false)
+var mathTimer = 900 
+
+var showDebug = bool(false)
 
 var math1 = 0
 var math2 = 0
@@ -20,11 +28,11 @@ func KILL():
 	position = Vector2(0,0)
 	if mathMode == true:
 		mathMode = false
-		print(\"math was too hard, killed self\")
+		print(\"math was too hard, died\")
 
 func genMath():
-	var math1 = randi() % 8 + 2
-	var math2 = randi() % 8 + 2
+	math1 = randi() % 8 + 2
+	math2 = randi() % 8 + 2
 	$Camera2D/mathSquare/mathQuestion.text = str(math1,\"*\",math2)
 	$Camera2D/mathSquare/mathField.text = \"\"
 	correctAnswer = math1*math2
@@ -39,7 +47,24 @@ func _physics_process(delta: float) -> void:
 		$Camera2D/mathSquare.visible = 0
 		if Input.is_action_just_pressed(\"jump\") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
-
+		
+		$MathSong.volume_db = -80
+		$NinjaSong.volume_db = 0
+		
+		mathTimer -= 1
+		
+		if mathTimer < 150 and mathTimer > 0:
+			$Camera2D/warnText.visible = 1
+			if $MathWarning.playing == false:
+				$MathWarning.play()
+		else:
+			$Camera2D/warnText.visible = 0
+			if not mathTimer > 0:
+				genMath()
+				$Camera2D/mathSquare/Wasap.play()
+				print(\"MATH!!!!!!!! MATH TIME!!!!!!!!\")
+				mathMode = true
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 		var direction := Input.get_axis(\"left\", \"right\")
@@ -49,21 +74,26 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	else:
 		$Camera2D/mathSquare.visible = 1
+		$MathSong.volume_db = 0
+		$NinjaSong.volume_db = -80 
+
+
 	if Input.is_action_pressed(\"right\"):
 		$Ninja.flip_h = false
 	if Input.is_action_pressed(\"left\"):
 		$Ninja.flip_h = true
 
-	if Input.is_action_just_pressed(\"suicide\"):
+	if Input.is_action_just_pressed(\"suicide\") and mathMode == false:
 		KILL()
 
 #Enabling and disabling of math mode
 	if Input.is_action_just_pressed(\"debug_math\"):
 		if mathMode == true:
-			print(\"do the MATH you lazy ass!!!!!!!!\")
+			print(\"do thde MATH you lazy ass!!!!!!!!\")
 		else:
 			mathMode = true
 			genMath()
+			$Camera2D/mathSquare/Wasap.play()
 			print(\"math ENABLED\")
 			
 
@@ -75,16 +105,41 @@ func _physics_process(delta: float) -> void:
 	if position.y > 250:
 		KILL()
 
+	#music!!!!!!!!
+	if $NinjaSong.playing == false:
+		$NinjaSong.play()
+
+	if $MathSong.playing == false:
+		$MathSong.play()
+
+	#Enabling and disabling of debug info
+	if Input.is_action_just_pressed(\"debug_info\"):
+		if showDebug == true:
+			showDebug = false
+			$Camera2D/debug.visible = 0
+		else:
+			showDebug = true
+			$Camera2D/debug.visible = 1
+	#Setting debug info
+	if showDebug == true:
+		$Camera2D/debug.text = str(\"evil math build 1\",\"
+FPS: \",str(Engine.get_frames_per_second()),\"
+mathTimer: \", mathTimer,\"
+mathMode:\", str(mathMode))
+	
+
 func _on_killbox_area_entered(_area: Area2D) -> void:
 	KILL()
 
 
 func _on_submit_button_pressed() -> void:
 	if $Camera2D/mathSquare/mathField.text == str(correctAnswer):
+		mathTimer = randi() % 900 + 900
 		mathMode = false
 	else:
 		print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
 		$Camera2D/mathSquare/mathField.text = \"WRONG\"
+	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
@@ -114,6 +169,16 @@ shape = SubResource("RectangleShape2D_g2els")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -16)
 
+[node name="warnText" type="RichTextLabel" parent="Camera2D"]
+visible = false
+offset_left = -58.0
+offset_top = -80.0
+offset_right = 59.0
+offset_bottom = -62.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_g2els")
+text = "MATH INCOMING"
+
 [node name="mathSquare" type="ColorRect" parent="Camera2D"]
 visible = false
 offset_left = -95.0
@@ -122,10 +187,14 @@ offset_right = 95.0
 offset_bottom = 31.0
 color = Color(0.2484, 0.2484, 0.2484, 1)
 
+[node name="Wasap" type="AudioStreamPlayer" parent="Camera2D/mathSquare"]
+stream = ExtResource("2_dqkch")
+
 [node name="MathTitle" type="RichTextLabel" parent="Camera2D/mathSquare"]
 layout_mode = 0
 offset_right = 190.0
 offset_bottom = 29.0
+theme_override_fonts/normal_font = ExtResource("2_g2els")
 text = "IT'S MATH TIME!!!!!!!!"
 horizontal_alignment = 1
 
@@ -134,22 +203,46 @@ layout_mode = 0
 offset_top = 34.0
 offset_right = 190.0
 offset_bottom = 63.0
+theme_override_fonts/normal_font = ExtResource("2_g2els")
 text = "math qyestio not workin"
 horizontal_alignment = 1
 
 [node name="mathField" type="TextEdit" parent="Camera2D/mathSquare"]
+layout_mode = 0
 offset_left = 3.0
 offset_top = 64.0
 offset_right = 117.0
 offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("2_g2els")
 placeholder_text = "answer"
 
 [node name="submitButton" type="Button" parent="Camera2D/mathSquare"]
+layout_mode = 0
 offset_left = 119.0
 offset_top = 64.0
 offset_right = 187.0
 offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("2_g2els")
 text = "SUBMIT"
+
+[node name="debug" type="RichTextLabel" parent="Camera2D"]
+visible = false
+offset_left = -128.0
+offset_top = -88.0
+offset_right = 128.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = ExtResource("2_g2els")
+text = "debug"
+
+[node name="NinjaSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qhqgy")
+
+[node name="MathSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qlg0r")
+
+[node name="MathWarning" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tuyoq")
+volume_db = 10.883
 
 [connection signal="area_entered" from="killbox" to="." method="_on_killbox_area_entered"]
 [connection signal="pressed" from="Camera2D/mathSquare/submitButton" to="." method="_on_submit_button_pressed"]
