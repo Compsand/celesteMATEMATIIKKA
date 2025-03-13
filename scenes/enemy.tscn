@@ -1,9 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dj5f1tjryowji"]
+[gd_scene load_steps=4 format=3 uid="uid://gsf8fhoxsaeo"]
 
 [ext_resource type="Texture2D" uid="uid://bj1hkjtnb6b4v" path="res://resources/graphics/sandwich_evil.png" id="1_7p1mj"]
 
 [sub_resource type="GDScript" id="GDScript_md0e3"]
 script/source = "extends CharacterBody2D
+
+var go = true
+
+func leftMovement():
+	if go == 1 : 
+		velocity.x = 150
+	else: 
+		velocity.x = -150
+		
+	if is_on_wall() :
+		if go == true : 
+			go = false
+		else: go = true
+
+func _physics_process(_delta: float) -> void: leftMovement()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
