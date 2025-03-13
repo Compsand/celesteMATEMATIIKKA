@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://huf13jgjrx20"]
+[gd_scene load_steps=8 format=4 uid="uid://huf13jgjrx20"]
 
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="1_1ps0d"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_qxeu4"]
 [ext_resource type="Texture2D" uid="uid://dokwy07oiifb7" path="res://resources/graphics/tileset.png" id="2_qxeu4"]
+[ext_resource type="PackedScene" uid="uid://dj5f1tjryowji" path="res://scenes/enemy.tscn" id="4_3yr0r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
 texture = ExtResource("2_qxeu4")
@@ -29,6 +30,7 @@ texture = ExtResource("2_qxeu4")
 
 [sub_resource type="TileSet" id="TileSet_ashii"]
 physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 17
 sources/0 = SubResource("TileSetAtlasSource_3yr0r")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxeu4"]
@@ -57,3 +59,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(-41.75, -19.5)
 shape = SubResource("RectangleShape2D_qxeu4")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_3yr0r")]
+position = Vector2(223, -280)

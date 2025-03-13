@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bncrlqrpm83hi"]
+[gd_scene load_steps=10 format=3 uid="uid://bncrlqrpm83hi"]
 
 [ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="1_3vyb7"]
 [ext_resource type="AudioStream" uid="uid://bem6kvmemvvnx" path="res://resources/sfx/wasap.wav" id="2_dqkch"]
@@ -81,8 +81,12 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed(\"right\"):
 		$Ninja.flip_h = false
+		$sordR.monitorable = true
+		$sordL.monitorable = false
 	if Input.is_action_pressed(\"left\"):
 		$Ninja.flip_h = true
+		$sordR.monitorable = false
+		$sordL.monitorable = true
 
 	if Input.is_action_just_pressed(\"suicide\") and mathMode == false:
 		KILL()
@@ -146,6 +150,10 @@ func _on_submit_button_pressed() -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(13, 14)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tuyoq"]
+radius = 1.0
+height = 11.3137
+
 [node name="player" type="CharacterBody2D"]
 collision_mask = 2
 script = SubResource("GDScript_3vyb7")
@@ -153,6 +161,25 @@ script = SubResource("GDScript_3vyb7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g2els")
+
+[node name="sordR" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sordR"]
+position = Vector2(10, -4)
+rotation = 0.785397
+shape = SubResource("CapsuleShape2D_tuyoq")
+
+[node name="sordL" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sordL"]
+position = Vector2(10, -4)
+rotation = 0.785397
+shape = SubResource("CapsuleShape2D_tuyoq")
 
 [node name="Ninja" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
