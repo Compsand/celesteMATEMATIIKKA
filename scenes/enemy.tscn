@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://gsf8fhoxsaeo"]
+[gd_scene load_steps=5 format=3 uid="uid://dj5f1tjryowji"]
 
 [ext_resource type="Texture2D" uid="uid://bj1hkjtnb6b4v" path="res://resources/graphics/sandwich_evil.png" id="1_7p1mj"]
 
@@ -6,25 +6,41 @@
 script/source = "extends CharacterBody2D
 
 var go = true
+var goTimer = 100
 
 func leftMovement():
-	if go == 1 : 
+	if go == true : 
 		velocity.x = 150
 	else: 
 		velocity.x = -150
 		
-	if is_on_wall() :
+	if is_on_wall() and goTimer < 0:
 		if go == true : 
 			go = false
-		else: go = true
+			goTimer = 10
+		else: 
+			go = true
+			goTimer = 10
+	
+	goTimer -= 1
+	move_and_slide()
 
 func _physics_process(_delta: float) -> void: leftMovement()
+
+
+func _on_killzone_area_entered(_area: Area2D) -> void:
+	queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
 size = Vector2(20, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p1mj"]
+size = Vector2(18.75, 8)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 2
 script = SubResource("GDScript_md0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -35,3 +51,13 @@ shape = SubResource("RectangleShape2D_4ra3w")
 position = Vector2(1, -2)
 scale = Vector2(0.425, 0.4375)
 texture = ExtResource("1_7p1mj")
+
+[node name="killzone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-0.375, 1)
+shape = SubResource("RectangleShape2D_7p1mj")
+
+[connection signal="area_entered" from="killzone" to="." method="_on_killzone_area_entered"]
