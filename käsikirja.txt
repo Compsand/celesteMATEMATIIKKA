@@ -1,0 +1,10 @@
+W, C, SPACE, up arrow == hyppäminen
+
+D, left arrow == mene vasemalle
+
+A, right arrow == mene oikealle
+
+S, down arrow == mene parempaan paikkaan
+
+
+You need to defeat the equasion
