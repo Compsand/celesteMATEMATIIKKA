@@ -27,6 +27,7 @@ func KILL():
 	print(\"skill issue\")
 	position = Vector2(0,0)
 	if mathMode == true:
+		mathTimer = randi() % 900 + 900
 		mathMode = false
 		print(\"math was too hard, died\")
 
@@ -134,7 +135,7 @@ func _on_killbox_area_entered(_area: Area2D) -> void:
 
 func _on_submit_button_pressed() -> void:
 	if $Camera2D/mathSquare/mathField.text == str(correctAnswer):
-		mathTimer = randi() % 900 + 900
+		mathTimer = randi() % 700 + 600
 		mathMode = false
 	else:
 		print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
