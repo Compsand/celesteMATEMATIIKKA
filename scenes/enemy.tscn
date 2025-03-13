@@ -1,3 +1,22 @@
-[gd_scene format=3 uid="uid://dj5f1tjryowji"]
+[gd_scene load_steps=4 format=3 uid="uid://dj5f1tjryowji"]
 
-[node name="Enemy" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://bj1hkjtnb6b4v" path="res://resources/graphics/sandwich_evil.png" id="1_7p1mj"]
+
+[sub_resource type="GDScript" id="GDScript_md0e3"]
+script/source = "extends CharacterBody2D
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ra3w"]
+size = Vector2(20, 8)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = SubResource("GDScript_md0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_4ra3w")
+
+[node name="SandwichEvil" type="Sprite2D" parent="."]
+position = Vector2(1, -2)
+scale = Vector2(0.425, 0.4375)
+texture = ExtResource("1_7p1mj")
