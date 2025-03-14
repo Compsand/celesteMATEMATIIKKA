@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://huf13jgjrx20"]
+[gd_scene load_steps=9 format=4 uid="uid://huf13jgjrx20"]
 
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="1_1ps0d"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_qxeu4"]
 [ext_resource type="Texture2D" uid="uid://dokwy07oiifb7" path="res://resources/graphics/tileset.png" id="2_qxeu4"]
 [ext_resource type="PackedScene" uid="uid://dj5f1tjryowji" path="res://scenes/enemy.tscn" id="4_3yr0r"]
+[ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="4_ashii"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
 texture = ExtResource("2_qxeu4")
@@ -60,6 +61,14 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(-41.75, -19.5)
 shape = SubResource("RectangleShape2D_qxeu4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="killzone"]
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="killzone/CollisionPolygon2D"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_3yr0r")]
 position = Vector2(223, -280)
