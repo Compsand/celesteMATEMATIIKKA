@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://b8teihu64ea7m"]
+[gd_scene load_steps=2 format=3 uid="uid://b8teihu64ea7m"]
+
+[ext_resource type="PackedScene" uid="uid://huf13jgjrx20" path="res://scenes/tile_level.tscn" id="1_dxiw0"]
 
 [node name="China" type="Node2D"]
+
+[node name="testLevel" parent="." instance=ExtResource("1_dxiw0")]

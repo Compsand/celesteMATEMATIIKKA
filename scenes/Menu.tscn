@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://cyilerake8w6f"]
 
 [node name="Menu" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 55.0
+offset_right = 178.0
+offset_bottom = 31.0
+text = "Start the game"
