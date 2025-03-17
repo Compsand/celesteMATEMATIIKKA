@@ -12,7 +12,7 @@ config_version=5
 
 config/name="celesteMATEMATIIKKA"
 config/version="Build_1"
-run/main_scene="uid://huf13jgjrx20"
+run/main_scene="uid://cyilerake8w6f"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0.921569, 0.776471, 1, 1)
 boot_splash/image="uid://be70bspr3vfme"
