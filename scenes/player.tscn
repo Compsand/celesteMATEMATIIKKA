@@ -27,7 +27,7 @@ func KILL():
 	print(\"skill issue\")
 	position = Vector2(0,0)
 	if mathMode == true:
-		mathTimer = randi() % 900 + 900
+		mathTimer = randi() % 700 + 600
 		mathMode = false
 		print(\"math was too hard, died\")
 
@@ -264,9 +264,11 @@ text = "debug"
 
 [node name="NinjaSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qhqgy")
+volume_db = -10.146
 
 [node name="MathSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_qlg0r")
+volume_db = -10.146
 
 [node name="MathWarning" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_tuyoq")
