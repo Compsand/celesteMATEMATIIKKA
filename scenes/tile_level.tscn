@@ -62,6 +62,22 @@ collision_mask = 0
 position = Vector2(-41.75, -19.5)
 shape = SubResource("RectangleShape2D_qxeu4")
 
+[node name="ColorRect" type="ColorRect" parent="killzone/CollisionShape2D"]
+offset_left = -5.25
+offset_top = -35.5
+offset_right = 4.75
+offset_bottom = 35.5
+color = Color(1, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="killzone/CollisionShape2D"]
+offset_left = 5.0
+offset_top = -35.0
+offset_right = 142.0
+offset_bottom = -10.0
+rotation = -4.71238
+scale = Vector2(0.548652, 0.408054)
+text = "EVIL RECTANGLE"
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="killzone"]
 polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
 
