@@ -1,7 +1,61 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8teihu64ea7m"]
+[gd_scene load_steps=6 format=4 uid="uid://csyppkba2jfnk"]
 
-[ext_resource type="PackedScene" uid="uid://huf13jgjrx20" path="res://scenes/tile_level.tscn" id="1_dxiw0"]
+[ext_resource type="Texture2D" uid="uid://dokwy07oiifb7" path="res://resources/graphics/tileset.png" id="2_dlpyv"]
+[ext_resource type="Texture2D" uid="uid://bx3sps0c4of8u" path="res://resources/graphics/wunkC.jpg" id="3_12ly3"]
+[ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="3_sb52s"]
 
-[node name="China" type="Node2D"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
+texture = ExtResource("2_dlpyv")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
 
-[node name="testLevel" parent="." instance=ExtResource("1_dxiw0")]
+[sub_resource type="TileSet" id="TileSet_ashii"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 17
+sources/0 = SubResource("TileSetAtlasSource_3yr0r")
+
+[node name="testLevel" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2509.0
+offset_top = -1797.0
+offset_right = 3754.0
+offset_bottom = 2016.0
+color = Color(1, 0.0156863, 0.2, 1)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(0.996148, 1)
+tile_map_data = PackedByteArray("AAD//wEAAAABAAAAAAD+/wEAAAABAAAAAAD9/wEAAAABAAAAAAD9/wIAAAABAAEAAAD+/wIAAAABAAEAAAD//wIAAAABAAEAAAAAAAIAAAABAAEAAAABAAIAAAABAAEAAAACAAIAAAABAAEAAAADAAIAAAABAAEAAAADAAEAAAACAAEAAAACAAEAAAAAAAEAAAABAAEAAAABAAAAAAAAAAEAAAABAAAAAAD7/wEAAAAAAAAAAAD7/wIAAAAAAAEAAAD7/wMAAAAAAAIAAAD8/wEAAAABAAAAAAD8/wIAAAABAAEAAAD8/wMAAAABAAIAAAD9/wMAAAABAAIAAAD+/wMAAAABAAIAAAD//wMAAAABAAIAAAAAAAMAAAABAAIAAAABAAMAAAABAAIAAAACAAMAAAABAAIAAAADAAMAAAABAAIAAAAEAAEAAAABAAAAAAAEAAIAAAABAAEAAAAEAAMAAAABAAIAAAAFAAEAAAABAAAAAAAFAAIAAAABAAEAAAAFAAMAAAABAAIAAAAGAAEAAAABAAAAAAAGAAIAAAABAAEAAAAGAAMAAAABAAIAAAAHAAEAAAABAAAAAAAHAAIAAAABAAEAAAAHAAMAAAABAAIAAAAIAAEAAAACAAAAAAAIAAIAAAACAAEAAAAIAAMAAAACAAIAAAACAAAAAAAAAAAAAAADAAAAAAACAAEAAAADAP//AAACAAAAAAADAP7/AAADAAAAAAAIAP3/AAADAAAAAAADAPv/AAADAAAAAAAKAP7/AAABAAEAAAAKAP//AAABAAIAAAALAP7/AAACAAEAAAALAP//AAACAAIAAAAMAP7/AAABAAEAAAAMAP//AAABAAIAAAANAP7/AAACAAEAAAANAP//AAACAAIAAAAAAPn/AAACAAIAAAAAAPr/AAABAAIAAAABAPn/AAACAAEAAAABAPr/AAACAAIAAAD///j/AAABAAIAAAD///n/AAABAAIAAAAAAPj/AAACAAIAAAD///f/AAABAAEAAAAAAPf/AAACAAEAAAACAPX/AAABAAEAAAACAPb/AAABAAIAAAADAPX/AAACAAEAAAADAPb/AAACAAIAAAAEAPX/AAABAAEAAAAEAPb/AAABAAIAAAAFAPX/AAABAAEAAAAFAPb/AAABAAIAAAAGAPX/AAACAAEAAAAGAPb/AAACAAIAAAAHAPX/AAABAAEAAAAHAPb/AAABAAIAAAAIAPX/AAACAAEAAAAIAPb/AAACAAIAAAAJAPX/AAABAAEAAAAJAPb/AAABAAIAAAAKAPX/AAACAAEAAAAKAPb/AAACAAIAAAALAPX/AAABAAEAAAALAPb/AAABAAIAAAAMAPX/AAACAAEAAAAMAPb/AAAAAAAAAAANAPX/AAAAAAAAAAAOAPX/AAAAAAAAAAAPAPX/AAAAAAAAAAAQAPX/AAAAAAAAAAARAPX/AAAAAAAAAAARAPb/AAAAAAAAAAAQAPb/AAAAAAAAAAAPAPb/AAAAAAAAAAAOAPb/AAAAAAAAAAANAPb/AAAAAAAAAAACAPf/AAAAAAAAAAADAPP/AAAAAAIAAAAFAPL/AAAAAAIAAAAHAPH/AAAAAAIAAAAJAPD/AAAAAAIAAAALAO//AAAAAAIAAAANAO7/AAAAAAIAAAAPAO3/AAAAAAIAAAARAOz/AAAAAAIAAAATAOv/AAAAAAIAAAAVAOr/AAAAAAIAAAARAPz/AAAAAAIAAAARAP7/AAAAAAIAAAAMAPr/AAAAAAIAAAAKAPv/AAAAAAIAAAAVAAIAAAAAAAIAAAAWAAIAAAAAAAIAAAAXAAIAAAAAAAIAAAAYAAIAAAAAAAIAAAAZAAIAAAAAAAIAAAAaAAIAAAAAAAIAAAAbAAIAAAAAAAIAAAAHAPT/AAAAAAEAAAAIAPT/AAAAAAEAAAAIAPP/AAAAAAEAAAAJAPP/AAAAAAEAAAAKAPP/AAAAAAEAAAAKAPL/AAAAAAEAAAALAPL/AAAAAAEAAAAMAPL/AAAAAAEAAAANAPL/AAAAAAEAAAANAPH/AAAAAAEAAAAOAPH/AAAAAAEAAAAPAPH/AAAAAAEAAAAQAPH/AAAAAAEAAAAQAPD/AAAAAAEAAAARAPD/AAAAAAEAAAASAPD/AAAAAAEAAAASAO//AAAAAAEAAAATAO//AAAAAAEAAAAUAO//AAAAAAEAAAAUAPD/AAAAAAEAAAAUAPH/AAAAAAEAAAATAPH/AAAAAAEAAAA=")
+tile_set = SubResource("TileSet_ashii")
+
+[node name="player" parent="." instance=ExtResource("3_sb52s")]
+
+[node name="killzone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="killzone"]
+polygon = PackedVector2Array(42, -13, 35, 0, 48, 0, 42, -13)
+
+[node name="WunkC" type="Sprite2D" parent="."]
+position = Vector2(41.4063, -6.65625)
+scale = Vector2(0.025625, 0.025375)
+texture = ExtResource("3_12ly3")
