@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://csyppkba2jfnk"]
+[gd_scene load_steps=7 format=4 uid="uid://b8teihu64ea7m"]
 
 [ext_resource type="Texture2D" uid="uid://dokwy07oiifb7" path="res://resources/graphics/tileset.png" id="2_dlpyv"]
 [ext_resource type="Texture2D" uid="uid://bx3sps0c4of8u" path="res://resources/graphics/wunkC.jpg" id="3_12ly3"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="3_sb52s"]
+[ext_resource type="PackedScene" uid="uid://dj5f1tjryowji" path="res://scenes/enemy.tscn" id="4_f2vlw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
 texture = ExtResource("2_dlpyv")
@@ -59,3 +60,24 @@ polygon = PackedVector2Array(42, -13, 35, 0, 48, 0, 42, -13)
 position = Vector2(41.4063, -6.65625)
 scale = Vector2(0.025625, 0.025375)
 texture = ExtResource("3_12ly3")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("4_f2vlw")]
+position = Vector2(156, -49)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("4_f2vlw")]
+position = Vector2(170, -90)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("4_f2vlw")]
+position = Vector2(159, 38)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("4_f2vlw")]
+position = Vector2(124, -165)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("4_f2vlw")]
+position = Vector2(80, -87)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("4_f2vlw")]
+position = Vector2(67, 31)
+
+[node name="CharacterBody2D7" parent="." instance=ExtResource("4_f2vlw")]
+position = Vector2(181, -232)
