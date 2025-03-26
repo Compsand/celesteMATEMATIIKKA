@@ -34,6 +34,13 @@ sources/0 = SubResource("TileSetAtlasSource_lp2f5")
 
 [node name="Siberia" type="Node2D"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2509.0
+offset_top = -1797.0
+offset_right = 3754.0
+offset_bottom = 2016.0
+color = Color(0.982506, 1, 0.999964, 1)
+
 [node name="Sign" type="Sprite2D" parent="."]
 position = Vector2(209.25, 2.25)
 scale = Vector2(0.383636, 0.352459)
