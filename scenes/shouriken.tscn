@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://y37db4quh7x4"]
+
+[ext_resource type="Texture2D" uid="uid://du3cc3gft1g2u" path="res://resources/graphics/shouriken.jpg" id="1_4k5vg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nrdla"]
+radius = 4.0
+
+[node name="Shouriken" type="CharacterBody2D"]
+
+[node name="Shouriken" type="Sprite2D" parent="."]
+scale = Vector2(0.011097, 0.0107143)
+texture = ExtResource("1_4k5vg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nrdla")
