@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://y37db4quh7x4"]
+[gd_scene load_steps=4 format=3 uid="uid://y37db4quh7x4"]
 
 [ext_resource type="Texture2D" uid="uid://du3cc3gft1g2u" path="res://resources/graphics/shouriken.jpg" id="1_4k5vg"]
+[ext_resource type="Script" uid="uid://cvttu3d6y1na6" path="res://scenes/shouriken.gd" id="1_nrdla"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nrdla"]
 radius = 4.0
 
 [node name="Shouriken" type="CharacterBody2D"]
+script = ExtResource("1_nrdla")
 
 [node name="Shouriken" type="Sprite2D" parent="."]
 scale = Vector2(0.011097, 0.0107143)
