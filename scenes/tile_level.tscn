@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://huf13jgjrx20"]
+[gd_scene load_steps=14 format=4 uid="uid://huf13jgjrx20"]
 
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="1_1ps0d"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_qxeu4"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="3_pt5ei"]
 [ext_resource type="PackedScene" uid="uid://dj5f1tjryowji" path="res://scenes/enemy.tscn" id="4_3yr0r"]
 [ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="4_ashii"]
+[ext_resource type="PackedScene" uid="uid://y37db4quh7x4" path="res://scenes/shouriken.tscn" id="8_4iy2b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
 texture = ExtResource("2_qxeu4")
@@ -148,5 +149,8 @@ script = SubResource("GDScript_pt5ei")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="levelChange"]
 position = Vector2(832, 74)
 shape = SubResource("RectangleShape2D_4iy2b")
+
+[node name="Shouriken" parent="." instance=ExtResource("8_4iy2b")]
+position = Vector2(2, -15)
 
 [connection signal="area_entered" from="levelChange" to="levelChange" method="_on_area_entered"]
