@@ -25,6 +25,8 @@ window/size/viewport_height=144
 window/size/mode=2
 window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://cwxnr4xq00y1a"
+mouse_cursor/custom_image_hotspot=Vector2(0, 16)
 
 [input]
 
