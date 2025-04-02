@@ -274,5 +274,12 @@ volume_db = -10.146
 stream = ExtResource("6_tuyoq")
 volume_db = 10.883
 
+[node name="stupid" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stupid"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_g2els")
+
 [connection signal="area_entered" from="killbox" to="." method="_on_killbox_area_entered"]
 [connection signal="pressed" from="Camera2D/mathSquare/submitButton" to="." method="_on_submit_button_pressed"]
