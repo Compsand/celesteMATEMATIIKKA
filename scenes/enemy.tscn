@@ -29,6 +29,7 @@ func _physics_process(_delta: float) -> void: leftMovement()
 
 
 func _on_killzone_area_entered(_area: Area2D) -> void:
+	$\"../sord\".play()
 	queue_free()
 "
 

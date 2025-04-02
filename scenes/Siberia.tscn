@@ -1,16 +1,34 @@
-[gd_scene load_steps=9 format=4 uid="uid://d2fdo4gw061nq"]
+[gd_scene load_steps=10 format=4 uid="uid://d2fdo4gw061nq"]
 
 [ext_resource type="Texture2D" uid="uid://b5g15t6tq60rp" path="res://resources/graphics/sign.jpg" id="1_x8tav"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="2_8ynil"]
 [ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="2_iu0rm"]
 [ext_resource type="Texture2D" uid="uid://6jqpjx3bquen" path="res://resources/graphics/siberiaset.png" id="2_x8tav"]
+[ext_resource type="AudioStream" uid="uid://0xjsbicor7tq" path="res://resources/sfx/cold.mp3" id="5_iu0rm"]
 
 [sub_resource type="GDScript" id="GDScript_8ynil"]
 script/source = "extends Area2D
 
+var coldalpha = 1
+
 func _on_area_entered(area: Area2D) -> void:
 	get_tree().change_scene_to_file(\"res://scenes/China.tscn\")
 	print(\"hamburger cheezburger big mac whopper\")
+
+
+
+func _physics_process(delta: float) -> void:
+	
+	if Input.is_action_just_pressed(\"shoot\"):
+		coldalpha = 0
+		$\"../player/coldsound\".play()
+	
+	if coldalpha > 1:
+		$\"../player/cold\".visible = 0
+	else:
+		$\"../player/cold\".visible = 1
+		coldalpha += 0.01
+	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu0rm"]
@@ -47,19 +65,20 @@ sources/0 = SubResource("TileSetAtlasSource_lp2f5")
 [node name="Siberia" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
+z_index = -4
 offset_left = -2871.0
 offset_top = -1808.0
 offset_right = 6469.0
 offset_bottom = 2005.0
 color = Color(0.219501, 0.219501, 0.219501, 1)
 
-[node name="levelChange" type="Area2D" parent="ColorRect"]
-position = Vector2(3082.67, 1720.69)
+[node name="levelChange" type="Area2D" parent="."]
+position = Vector2(211.67, -87.3101)
 collision_layer = 32
 collision_mask = 32
 script = SubResource("GDScript_8ynil")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/levelChange"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelChange"]
 position = Vector2(4444.33, 55.3116)
 shape = SubResource("RectangleShape2D_iu0rm")
 
@@ -99,6 +118,19 @@ tile_set = SubResource("TileSet_7vgpf")
 
 [node name="player" parent="." instance=ExtResource("2_8ynil")]
 
+[node name="coldsound" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource("5_iu0rm")
+
+[node name="cold" type="RichTextLabel" parent="player"]
+z_index = -1
+offset_left = -93.0
+offset_top = -74.0
+offset_right = 94.0
+offset_bottom = -19.0
+theme_override_fonts/normal_font = ExtResource("2_iu0rm")
+text = "brrrr... it's too cold to use shourikens"
+horizontal_alignment = 1
+
 [node name="CPUParticles2D" type="CPUParticles2D" parent="player"]
 position = Vector2(4, -90)
 amount = 64
@@ -131,4 +163,4 @@ scale_amount_min = 0.0
 scale_amount_max = 3.0
 color = Color(0.71, 0.937167, 1, 1)
 
-[connection signal="area_entered" from="ColorRect/levelChange" to="ColorRect/levelChange" method="_on_area_entered"]
+[connection signal="area_entered" from="levelChange" to="levelChange" method="_on_area_entered"]

@@ -1,12 +1,14 @@
-[gd_scene load_steps=7 format=4 uid="uid://b8teihu64ea7m"]
+[gd_scene load_steps=9 format=4 uid="uid://b8teihu64ea7m"]
 
-[ext_resource type="Texture2D" uid="uid://dokwy07oiifb7" path="res://resources/graphics/tileset.png" id="2_dlpyv"]
+[ext_resource type="Texture2D" uid="uid://brqfk88ouy8dq" path="res://resources/graphics/tilesetC.png" id="1_dlpyv"]
 [ext_resource type="Texture2D" uid="uid://bx3sps0c4of8u" path="res://resources/graphics/wunkC.jpg" id="3_12ly3"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="3_sb52s"]
 [ext_resource type="PackedScene" uid="uid://dj5f1tjryowji" path="res://scenes/enemy.tscn" id="4_f2vlw"]
+[ext_resource type="AudioStream" uid="uid://xah2c7fkaqou" path="res://resources/sfx/sword.mp3" id="5_mi75y"]
+[ext_resource type="PackedScene" uid="uid://y37db4quh7x4" path="res://scenes/shouriken.tscn" id="6_dlpyv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
-texture = ExtResource("2_dlpyv")
+texture = ExtResource("1_dlpyv")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
 1:0/0 = 0
@@ -81,3 +83,9 @@ position = Vector2(67, 31)
 
 [node name="CharacterBody2D7" parent="." instance=ExtResource("4_f2vlw")]
 position = Vector2(181, -232)
+
+[node name="sord" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mi75y")
+
+[node name="Shouriken" parent="." instance=ExtResource("6_dlpyv")]
+position = Vector2(-19, 877)
