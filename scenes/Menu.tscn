@@ -8,7 +8,7 @@ script/source = "extends Button
 
 
 func _pressed() -> void:
-	get_tree().change_scene_to_file(\"res://Scenes/tile_level.tscn\")
+	get_tree().change_scene_to_file(\"res://scenes/tile_level.tscn\")
 "
 
 [node name="Menu" type="Node2D"]
