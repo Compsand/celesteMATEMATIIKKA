@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://c1bqsuhwcd74b"]
+[gd_scene load_steps=13 format=4 uid="uid://c1bqsuhwcd74b"]
 
 [ext_resource type="Texture2D" uid="uid://brqfk88ouy8dq" path="res://resources/graphics/tilesetC.png" id="2_gk1qj"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="3_dv837"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://whyym08gj15n" path="res://resources/graphics/bigboss.jpg" id="6_n0118"]
 [ext_resource type="AudioStream" uid="uid://xah2c7fkaqou" path="res://resources/sfx/sword.mp3" id="6_rlquo"]
 [ext_resource type="PackedScene" uid="uid://y37db4quh7x4" path="res://scenes/shouriken.tscn" id="7_7a7lp"]
+[ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="7_ocmas"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
 texture = ExtResource("2_gk1qj")
@@ -38,6 +39,8 @@ sources/0 = SubResource("TileSetAtlasSource_3yr0r")
 [sub_resource type="GDScript" id="GDScript_n0118"]
 script/source = "extends Sprite2D
 
+func _on_biden_trigger_area_entered(area: Area2D) -> void:
+	pass # Replace with function body.
 
 
 
@@ -113,4 +116,14 @@ stream = ExtResource("6_rlquo")
 [node name="Shouriken" parent="." instance=ExtResource("7_7a7lp")]
 position = Vector2(-19, 877)
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 602.0
+offset_top = -223.0
+offset_right = 698.0
+offset_bottom = -196.0
+theme_override_fonts/font = ExtResource("7_ocmas")
+max_value = 500.0
+value = 500.0
+
 [connection signal="area_entered" from="bidenTrigger" to="bidenTrigger" method="_on_area_entered"]
+[connection signal="area_entered" from="bidenTrigger" to="Bigboss" method="_on_biden_trigger_area_entered"]
