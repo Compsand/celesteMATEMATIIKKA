@@ -130,11 +130,15 @@ func _physics_process(delta: float) -> void:
 		KILL()
 
 	#music!!!!!!!!
-	if $NinjaSong.playing == false:
-		$NinjaSong.play()
+	if str(get_node_or_null(\"music\")) == \"<Object#null>\":
+		if $NinjaSong.playing == false:
+			$NinjaSong.play()
 
-	if $MathSong.playing == false:
-		$MathSong.play()
+		if $MathSong.playing == false:
+			$MathSong.play()
+	else:
+		if $music.playing == false:
+			$music.play()
 
 	#Enabling and disabling of debug info
 	if Input.is_action_just_pressed(\"debug_info\"):
@@ -162,7 +166,9 @@ func _physics_process(delta: float) -> void:
 FPS: \",str(Engine.get_frames_per_second()),\"
 mathTimer: \", mathTimer,\"
 mathMode:\", str(mathMode), \"
-bossmode: \", str(bossmode))
+bossmode: \", str(bossmode), \"
+music:\", str(get_node_or_null(\"music\")) )
+
 	
 
 func _on_killbox_area_entered(_area: Area2D) -> void:
