@@ -195,6 +195,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+z_index = 2
 offset = Vector2(0, -16)
 
 [node name="warnText" type="RichTextLabel" parent="Camera2D"]
