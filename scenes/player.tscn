@@ -23,6 +23,9 @@ var math1 = 0
 var math2 = 0
 var correctAnswer = 0
 
+var bossmode = bool(false)
+
+
 func KILL():
 	print(\"skill issue\")
 	position = Vector2(0,0)
@@ -40,6 +43,22 @@ func genMath():
 
 
 func _physics_process(delta: float) -> void:
+	
+	##enable boss mode if camera disabled, do boss mode stuff when bossmode enabled
+	
+	if bossmode == true:
+		if mathMode == true:
+			$Camera2D.enabled = 1 
+			$\"../Camera2D\".enabled = 0
+		else:
+			$Camera2D.enabled = 0
+			$\"../Camera2D\".enabled = 1
+	elif $Camera2D.enabled == false:
+		bossmode = true ##god damn that is some beautiful code. impossible to read tho.
+	
+	
+	
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -125,12 +144,25 @@ func _physics_process(delta: float) -> void:
 		else:
 			showDebug = true
 			$Camera2D/debug.visible = 1
+	
+	
+	## fine i'll make enter work
+	if mathMode == true:
+		if Input.is_action_just_pressed(\"enter\"):
+			if $Camera2D/mathSquare/mathField.text.replace(\"\\n\", \"\") == str(correctAnswer):
+				mathTimer = randi() % 700 + 600
+				mathMode = false
+			else:
+				print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
+				$Camera2D/mathSquare/mathField.text = \"WRONG\"
+	
 	#Setting debug info
 	if showDebug == true:
-		$Camera2D/debug.text = str(\"evil math build 1\",\"
+		$Camera2D/debug.text = str(\"evil math build 2\",\"
 FPS: \",str(Engine.get_frames_per_second()),\"
 mathTimer: \", mathTimer,\"
-mathMode:\", str(mathMode))
+mathMode:\", str(mathMode), \"
+bossmode: \", str(bossmode))
 	
 
 func _on_killbox_area_entered(_area: Area2D) -> void:
