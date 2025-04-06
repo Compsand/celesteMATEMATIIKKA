@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bncrlqrpm83hi"]
+[gd_scene load_steps=11 format=3 uid="uid://bncrlqrpm83hi"]
 
 [ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="1_3vyb7"]
 [ext_resource type="AudioStream" uid="uid://bem6kvmemvvnx" path="res://resources/sfx/wasap.wav" id="2_dqkch"]
@@ -40,6 +40,7 @@ func genMath():
 	$Camera2D/mathSquare/mathQuestion.text = str(math1,\"*\",math2)
 	$Camera2D/mathSquare/mathField.text = \"\"
 	correctAnswer = math1*math2
+	$Camera2D/mathSquare/mathField.grab_focus()
 
 
 func _physics_process(delta: float) -> void:
@@ -192,6 +193,8 @@ size = Vector2(13, 14)
 radius = 1.0
 height = 11.3137
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tuyoq"]
+
 [node name="player" type="CharacterBody2D"]
 collision_mask = 2
 script = SubResource("GDScript_3vyb7")
@@ -274,13 +277,14 @@ theme_override_fonts/normal_font = ExtResource("2_g2els")
 text = "math qyestio not workin"
 horizontal_alignment = 1
 
-[node name="mathField" type="TextEdit" parent="Camera2D/mathSquare"]
+[node name="mathField" type="LineEdit" parent="Camera2D/mathSquare"]
 layout_mode = 0
 offset_left = 3.0
-offset_top = 64.0
+offset_top = 63.0
 offset_right = 117.0
-offset_bottom = 95.0
+offset_bottom = 94.0
 theme_override_fonts/font = ExtResource("2_g2els")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tuyoq")
 placeholder_text = "answer"
 
 [node name="submitButton" type="Button" parent="Camera2D/mathSquare"]
