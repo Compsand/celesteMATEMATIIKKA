@@ -6,6 +6,7 @@ var SPEED = 300.0
 # do the new input shot right , when second button is pressed
 # also do the new input for left we make workaround
 var EVILMODE = 0
+var cooldown = 0
 
 func _physics_process(delta: float) -> void:
 	
@@ -13,11 +14,13 @@ func _physics_process(delta: float) -> void:
 	var left = get_node("../player/Ninja").flip_h
 	
 	rotation += 1
+	cooldown -= 1
 	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and cooldown < 0:
 		if left : velocity.x = -300 
 		else: velocity.x = 300
 		position = get_node("../player").position
+		cooldown = 60
 	
 	move_and_slide()
 	
