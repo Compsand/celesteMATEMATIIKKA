@@ -14,6 +14,7 @@ script/source = "extends CharacterBody2D
 const SPEED = 200.0
 const JUMP_VELOCITY = -300.0
 
+
 var mathMode = bool(false)
 var mathTimer = 900 
 
@@ -25,6 +26,8 @@ var correctAnswer = 0
 
 var bossmode = bool(false)
 
+var bosslevel = 0
+var thisIsProbablyTheWorstWayToDoThisLol = 0
 
 func KILL():
 	print(\"skill issue\")
@@ -39,6 +42,7 @@ func genMath():
 	math2 = randi() % 8 + 2
 	$Camera2D/mathSquare/mathQuestion.text = str(math1,\"*\",math2)
 	$Camera2D/mathSquare/mathField.text = \"\"
+	$Camera2D/mathSquare/mathField.placeholder_text = \"ANSWER\"
 	correctAnswer = math1*math2
 	$Camera2D/mathSquare/mathField.grab_focus()
 
@@ -55,8 +59,11 @@ func _physics_process(delta: float) -> void:
 			$Camera2D.enabled = 0
 			$\"../Camera2D\".enabled = 1
 	elif $Camera2D.enabled == false:
-		bossmode = true ##god damn that is some beautiful code. impossible to read tho.
+		bossmode = true
 	
+	
+	
+		$Camera2D/warnText.visible = 0
 	
 	
 	
@@ -75,11 +82,17 @@ func _physics_process(delta: float) -> void:
 		mathTimer -= 1
 		
 		if mathTimer < 150 and mathTimer > 0:
-			$Camera2D/warnText.visible = 1
+			if bossmode == false:
+				$Camera2D/warnText.visible = 1
+			else:
+				$\"../bigWarning\".visible = 1
 			if $MathWarning.playing == false:
 				$MathWarning.play()
 		else:
-			$Camera2D/warnText.visible = 0
+			if bossmode == false:
+				$Camera2D/warnText.visible = 0
+			else:
+				$\"../bigWarning\".visible = 0
 			if not mathTimer > 0:
 				genMath()
 				$Camera2D/mathSquare/Wasap.play()
@@ -108,7 +121,7 @@ func _physics_process(delta: float) -> void:
 		$sordR.monitorable = false
 		$sordL.monitorable = true
 
-	if Input.is_action_just_pressed(\"suicide\") and mathMode == false:
+	if Input.is_action_just_pressed(\"suicide\") and mathMode == false and bossmode == false:
 		KILL()
 
 #Enabling and disabling of math mode
@@ -141,6 +154,20 @@ func _physics_process(delta: float) -> void:
 		if $music.playing == false:
 			$music.play()
 
+
+	if not str(get_node_or_null(\"../bidenTrigger\")) == \"<Object#null>\":
+		bosslevel = 1
+	elif bosslevel == 1:
+		$music.volume_db = -80
+		if thisIsProbablyTheWorstWayToDoThisLol == 0:    ## good luck trying to understand any of this :3
+			thisIsProbablyTheWorstWayToDoThisLol = 1
+			$Bidenintro.play()
+		else:
+			if $Bidenintro.playing == false and $Bidenloop.playing == false:
+				$Bidenloop.play()
+
+
+
 	#Enabling and disabling of debug info
 	if Input.is_action_just_pressed(\"debug_info\"):
 		if showDebug == true:
@@ -159,7 +186,8 @@ func _physics_process(delta: float) -> void:
 				mathMode = false
 			else:
 				print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
-				$Camera2D/mathSquare/mathField.text = \"WRONG\"
+				$Camera2D/mathSquare/mathField.text = \"\"
+				$Camera2D/mathSquare/mathField.placeholder_text = \"WRONG\"
 	
 	#Setting debug info
 	if showDebug == true:
@@ -182,7 +210,8 @@ func _on_submit_button_pressed() -> void:
 		mathMode = false
 	else:
 		print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
-		$Camera2D/mathSquare/mathField.text = \"WRONG\"
+		$Camera2D/mathSquare/mathField.text = \"\"
+		$Camera2D/mathSquare/mathField.placeholder_text = \"WRONG\"
 	
 "
 
