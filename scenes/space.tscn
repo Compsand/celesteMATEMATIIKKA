@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://c1bqsuhwcd74b"]
+[gd_scene load_steps=24 format=4 uid="uid://c1bqsuhwcd74b"]
 
 [ext_resource type="Texture2D" uid="uid://di20va6m5srt3" path="res://resources/graphics/tilespacet.png" id="1_a65qk"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="3_dv837"]
@@ -11,6 +11,43 @@
 [ext_resource type="PackedScene" uid="uid://y37db4quh7x4" path="res://scenes/shouriken.tscn" id="7_7a7lp"]
 [ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="7_ocmas"]
 [ext_resource type="Texture2D" uid="uid://bvbtbncccm2n4" path="res://resources/other/message.png" id="11_85sbg"]
+
+[sub_resource type="GDScript" id="GDScript_85sbg"]
+script/source = "extends Node2D
+
+var heeeellllyeahhhhhhhh = 0
+var attack = 0
+var atktime = 60
+var first = true
+var direction = 0
+
+func _on_biden_trigger_area_entered(area: Area2D) -> void:
+	heeeellllyeahhhhhhhh = 1
+
+
+
+
+func _physics_process(delta: float) -> void:
+	if heeeellllyeahhhhhhhh:
+		if attack:
+			if attack == 1:        ##LAZERRRRRRR
+				if first:
+					atktime = 300
+					$LAZERRRR.position = Vector2(645.0, -156.0)
+					$LAZERRRR.look_at($player.position)
+					direction = randi() % 2
+					first = false
+				if direction:
+					$LAZERRRR.rotation += 0.02
+				else :
+					$LAZERRRR.rotation -= 0.02
+				atktime -= 1
+		else:
+			atktime -= 1
+			if atktime < 1:
+				attack = randi() % 1 + 1
+				first = true
+"
 
 [sub_resource type="Gradient" id="Gradient_85sbg"]
 offsets = PackedFloat32Array(0, 0.366667, 0.66, 1)
@@ -48,6 +85,17 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 17
 sources/0 = SubResource("TileSetAtlasSource_3yr0r")
 
+[sub_resource type="GDScript" id="GDScript_rlquo"]
+script/source = "extends Area2D
+
+func _on_area_entered(area: Area2D) -> void:
+	get_tree().change_scene_to_file(\"res://scenes/space.tscn\")
+	print(\"hamburger cheezburger big mac whopper\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rlquo"]
+size = Vector2(523, 6)
+
 [sub_resource type="GDScript" id="GDScript_n0118"]
 script/source = "extends Sprite2D
 
@@ -81,6 +129,7 @@ size = Vector2(31.7501, 60)
 size = Vector2(568, 66)
 
 [node name="testLevel" type="Node2D"]
+script = SubResource("GDScript_85sbg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -2509.0
@@ -174,6 +223,32 @@ stream = ExtResource("5_a65qk")
 [node name="Bidenloop" type="AudioStreamPlayer" parent="player"]
 stream = ExtResource("6_85sbg")
 
+[node name="LAZERRRR" type="Node2D" parent="."]
+position = Vector2(697, 1000)
+
+[node name="levelChange" type="Area2D" parent="LAZERRRR"]
+collision_layer = 0
+script = SubResource("GDScript_rlquo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LAZERRRR/levelChange"]
+position = Vector2(-261.5, 0)
+shape = SubResource("RectangleShape2D_rlquo")
+
+[node name="ColorRect" type="ColorRect" parent="LAZERRRR/levelChange"]
+offset_left = -523.0
+offset_top = -5.0
+offset_bottom = 6.0
+color = Color(0, 1, 1, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LAZERRRR"]
+offset_top = 9.0
+offset_right = 532.0
+offset_bottom = 24.0
+rotation = -3.14159
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("7_ocmas")
+text = "LAZEERRRRRRR LAZERRRRRRRRRRRR LAAAAAAAAZZZZEEERRRRRR LAZERRRRRRRR"
+
 [node name="Bigboss" type="Sprite2D" parent="."]
 position = Vector2(646, -157)
 scale = Vector2(0.108, 0.108)
@@ -229,5 +304,7 @@ shape = SubResource("RectangleShape2D_85sbg")
 [node name="Sprite2D" type="Sprite2D" parent="message/CollisionShape2D"]
 texture = ExtResource("11_85sbg")
 
+[connection signal="area_entered" from="LAZERRRR/levelChange" to="LAZERRRR/levelChange" method="_on_area_entered"]
+[connection signal="area_entered" from="bidenTrigger" to="." method="_on_biden_trigger_area_entered"]
 [connection signal="area_entered" from="bidenTrigger" to="Bigboss" method="_on_biden_trigger_area_entered"]
 [connection signal="area_entered" from="bidenTrigger" to="bidenTrigger" method="_on_area_entered"]
