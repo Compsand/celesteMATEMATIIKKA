@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cak0oiuh82e1p"
+path="res://.godot/imported/soberia craze.mp3-3d64627179a02d5e4e2af08b92d6cfb5.mp3str"
+
+[deps]
+
+source_file="res://resources/music/soberia craze.mp3"
+dest_files=["res://.godot/imported/soberia craze.mp3-3d64627179a02d5e4e2af08b92d6cfb5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
