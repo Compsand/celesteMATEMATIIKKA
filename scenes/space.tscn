@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://di20va6m5srt3" path="res://resources/graphics/tilespacet.png" id="1_a65qk"]
 [ext_resource type="PackedScene" uid="uid://cuhq11mi636d1" path="res://scenes/projectile.tscn" id="1_rlquo"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="3_dv837"]
-[ext_resource type="AudioStream" uid="uid://bvnteqe4an7is" path="res://resources/music/china.mp3" id="4_gk1qj"]
 [ext_resource type="Texture2D" uid="uid://uu0kn3fgehp0" path="res://resources/graphics/wunkglorp.jpg" id="4_n0118"]
 [ext_resource type="AudioStream" uid="uid://l56oks0vkos" path="res://resources/music/bidenintro.mp3" id="5_a65qk"]
+[ext_resource type="AudioStream" uid="uid://bvfhyf484uorx" path="res://resources/music/space.mp3" id="6_7a7lp"]
 [ext_resource type="AudioStream" uid="uid://db2bc047n1wop" path="res://resources/music/bidenloop.mp3" id="6_85sbg"]
 [ext_resource type="Texture2D" uid="uid://whyym08gj15n" path="res://resources/graphics/bigboss.jpg" id="6_n0118"]
 [ext_resource type="AudioStream" uid="uid://xah2c7fkaqou" path="res://resources/sfx/sword.mp3" id="6_rlquo"]
@@ -189,10 +189,10 @@ script = SubResource("GDScript_85sbg")
 Projectile = ExtResource("1_rlquo")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -2509.0
-offset_top = -1797.0
-offset_right = 3754.0
-offset_bottom = 2016.0
+offset_left = -2656.0
+offset_top = -1592.0
+offset_right = 3607.0
+offset_bottom = 2221.0
 color = Color(0.027451, 0, 0.0588235, 1)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
@@ -282,7 +282,7 @@ texture = ExtResource("4_n0118")
 [node name="player" parent="." instance=ExtResource("3_dv837")]
 
 [node name="music" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource("4_gk1qj")
+stream = ExtResource("6_7a7lp")
 
 [node name="Bidenintro" type="AudioStreamPlayer" parent="player"]
 stream = ExtResource("5_a65qk")
