@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://d2fdo4gw061nq"]
+[gd_scene load_steps=13 format=4 uid="uid://d2fdo4gw061nq"]
 
 [ext_resource type="Texture2D" uid="uid://b5g15t6tq60rp" path="res://resources/graphics/sign.jpg" id="1_x8tav"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="2_8ynil"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6jqpjx3bquen" path="res://resources/graphics/siberiaset.png" id="2_x8tav"]
 [ext_resource type="AudioStream" uid="uid://0xjsbicor7tq" path="res://resources/sfx/cold.mp3" id="5_iu0rm"]
 [ext_resource type="Texture2D" uid="uid://dvxriyr1rduca" path="res://resources/other/cat.png" id="6_7vgpf"]
+[ext_resource type="AudioStream" uid="uid://w0l8i28c2cws" path="res://resources/sfx/soberia craze.mp3" id="6_pvq5x"]
 [ext_resource type="Script" uid="uid://dywvchmr0vvrb" path="res://scenes/cat.gd" id="7_pvq5x"]
 
 [sub_resource type="GDScript" id="GDScript_8ynil"]
@@ -164,6 +165,9 @@ initial_velocity_max = 5.0
 scale_amount_min = 0.0
 scale_amount_max = 3.0
 color = Color(0.71, 0.937167, 1, 1)
+
+[node name="music" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource("6_pvq5x")
 
 [node name="Cat" type="Sprite2D" parent="."]
 position = Vector2(-211, -237.639)
