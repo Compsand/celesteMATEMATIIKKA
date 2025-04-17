@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://vj0wdy806o67"]
+[gd_scene load_steps=22 format=3 uid="uid://w5lfn7tma5qy"]
 
 [ext_resource type="Texture2D" uid="uid://dkxf0rgiv24ov" path="res://resources/graphics/ball.png" id="1_c1t8d"]
 [ext_resource type="Texture2D" uid="uid://whyym08gj15n" path="res://resources/graphics/bigboss.jpg" id="2_g4wvt"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="17_fa2y2"]
 [ext_resource type="Texture2D" uid="uid://bx3sps0c4of8u" path="res://resources/graphics/wunkC.jpg" id="18_hh5ci"]
 [ext_resource type="Texture2D" uid="uid://uu0kn3fgehp0" path="res://resources/graphics/wunkglorp.jpg" id="19_3wb5j"]
+[ext_resource type="Texture2D" uid="uid://ckk44cvnlx3cq" path="res://images.jpg" id="20_hh5ci"]
 
 [sub_resource type="GDScript" id="GDScript_3w3uj"]
 script/source = "extends Node2D
@@ -207,6 +208,14 @@ compsand
 
 
 
+images.jpg
+
+
+
+
+
+stolen
+
 music list:
 
 
@@ -220,7 +229,20 @@ china advance by kotus2
 
 space by kotus2
 
-biden bess theme by compsand"
+biden bess theme by compsand
+
+
+sfx list:
+21.wav by stolen
+
+cold.mp3 by comand
+
+mathWarning.wav I hope it's not stolen
+
+sword.mp3 by DJ Stolen
+
+wasap.wav by wasap
+"
 horizontal_alignment = 1
 
 [node name="Ball" type="Sprite2D" parent="credits"]
@@ -343,3 +365,8 @@ texture = ExtResource("19_3wb5j")
 position = Vector2(125, 3290.75)
 scale = Vector2(0.082, 0.651)
 texture = ExtResource("18_hh5ci")
+
+[node name="Images" type="Sprite2D" parent="credits"]
+position = Vector2(128, 3862)
+scale = Vector2(0.519058, 0.480088)
+texture = ExtResource("20_hh5ci")
