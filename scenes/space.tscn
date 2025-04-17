@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://c1bqsuhwcd74b"]
+[gd_scene load_steps=32 format=4 uid="uid://c1bqsuhwcd74b"]
 
 [ext_resource type="Texture2D" uid="uid://di20va6m5srt3" path="res://resources/graphics/tilespacet.png" id="1_a65qk"]
 [ext_resource type="PackedScene" uid="uid://cuhq11mi636d1" path="res://scenes/projectile.tscn" id="1_rlquo"]
@@ -98,7 +98,14 @@ func _on_bidenbox_area_entered(area: Area2D) -> void:
 	if $bosshp.value < 1:
 		heeeellllyeahhhhhhhh = 0
 		$Bigboss.visible = 0
-		$bidenbox.monitoring = 0
+		$bidenbox.queue_free()
+		$CPUParticles2D2.emission_sphere_radius = 32
+		$CPUParticles2D2.orbit_velocity_max= 1
+		$CPUParticles2D2.global_position.y = $bosshp.global_position.y
+		$LAZERRRR.queue_free()
+		$bosshp.visible = 0
+		$levelChange2/CollisionShape2D.global_position = $CPUParticles2D2.global_position
+		
 "
 
 [sub_resource type="Gradient" id="Gradient_85sbg"]
@@ -136,6 +143,16 @@ texture = ExtResource("1_a65qk")
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 17
 sources/0 = SubResource("TileSetAtlasSource_3yr0r")
+
+[sub_resource type="GDScript" id="GDScript_7a7lp"]
+script/source = "extends Area2D
+
+func _on_area_entered(area: Area2D) -> void:
+	get_tree().change_scene_to_file(\"res://scenes/credits.tscn\")
+	print(\"hamburger cheezburger big mac whopper\")
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rlquo"]
 
 [sub_resource type="GDScript" id="GDScript_rlquo"]
 script/source = "extends Area2D
@@ -302,6 +319,15 @@ stream = ExtResource("5_a65qk")
 [node name="Bidenloop" type="AudioStreamPlayer" parent="player"]
 stream = ExtResource("6_85sbg")
 
+[node name="levelChange2" type="Area2D" parent="."]
+position = Vector2(707, 839)
+collision_layer = 0
+script = SubResource("GDScript_7a7lp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelChange2"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_rlquo")
+
 [node name="LAZERRRR" type="Node2D" parent="."]
 position = Vector2(697, 1000)
 
@@ -372,8 +398,8 @@ offset_top = -129.0
 offset_right = 673.0
 offset_bottom = -109.0
 theme_override_fonts/font = ExtResource("7_ocmas")
-max_value = 20.0
-value = 20.0
+max_value = 50.0
+value = 50.0
 
 [node name="bossDoor" type="StaticBody2D" parent="."]
 position = Vector2(488.076, -116.506)
