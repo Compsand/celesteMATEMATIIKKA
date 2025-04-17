@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://ditppfhqdlje8"]
+
+[ext_resource type="Texture2D" uid="uid://c1cmflj440p6t" path="res://resources/graphics/title.png" id="1_1gq0u"]
+[ext_resource type="Texture2D" uid="uid://c73fvljicos4v" path="res://resources/graphics/rocket.png" id="1_8gp0v"]
+[ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_dyims"]
+[ext_resource type="Texture2D" uid="uid://uu0kn3fgehp0" path="res://resources/graphics/wunkglorp.jpg" id="1_rbxoo"]
+[ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="2_ahpvl"]
+[ext_resource type="Texture2D" uid="uid://brqfk88ouy8dq" path="res://resources/graphics/tilesetC.png" id="4_5fsco"]
+[ext_resource type="Texture2D" uid="uid://di20va6m5srt3" path="res://resources/graphics/tilespacet.png" id="5_8gp0v"]
+[ext_resource type="Texture2D" uid="uid://6jqpjx3bquen" path="res://resources/graphics/siberiaset.png" id="5_dyims"]
+[ext_resource type="Texture2D" uid="uid://bj1hkjtnb6b4v" path="res://resources/graphics/sandwich_evil.png" id="6_5fsco"]
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(2, 2)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -4
+offset_left = -130.0
+offset_top = -129.0
+offset_right = 39.0
+offset_bottom = 350.0
+color = Color(0.0317551, 0.0500204, 0.124735, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 35.0
+offset_top = -9.0
+offset_right = 87.0
+offset_bottom = 118.0
+color = Color(1, 0.0156863, 0.2, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 90.0
+offset_top = -1570.0
+offset_right = 3663.0
+offset_bottom = 2243.0
+color = Color(0.027451, 0, 0.0588235, 1)
+
+[node name="Wunkglorp" type="Sprite2D" parent="."]
+position = Vector2(111.5, 52)
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("1_rbxoo")
+
+[node name="Rocket" type="Sprite2D" parent="."]
+position = Vector2(90.5, 30)
+scale = Vector2(0.2032, 0.2032)
+texture = ExtResource("1_8gp0v")
+
+[node name="Tree1" type="Sprite2D" parent="."]
+position = Vector2(45.5, 27.5)
+texture = ExtResource("1_dyims")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 12.0
+offset_top = 21.0
+offset_right = 48.0
+offset_bottom = 36.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 55.0
+offset_top = 22.0
+offset_right = 102.0
+offset_bottom = 37.0
+color = Color(0.280128, 0.561457, 0.774684, 1)
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(56.5, 29)
+texture = ExtResource("1_1gq0u")
+
+[node name="Ninja" type="Sprite2D" parent="."]
+position = Vector2(36.5, 49.5)
+texture = ExtResource("2_ahpvl")
+
+[node name="Tileset" type="Sprite2D" parent="."]
+position = Vector2(7, 89)
+rotation = 1.5708
+texture = ExtResource("5_dyims")
+
+[node name="TilesetC" type="Sprite2D" parent="."]
+position = Vector2(103, 97)
+rotation = 1.5708
+texture = ExtResource("5_8gp0v")
+
+[node name="Siberiaset" type="Sprite2D" parent="."]
+position = Vector2(55, 93)
+rotation = 1.5708
+texture = ExtResource("4_5fsco")
+
+[node name="SandwichEvil" type="Sprite2D" parent="."]
+position = Vector2(65.5, 51)
+scale = Vector2(0.394531, 0.394531)
+texture = ExtResource("6_5fsco")
