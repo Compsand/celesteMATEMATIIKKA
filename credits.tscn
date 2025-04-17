@@ -1,0 +1,236 @@
+[gd_scene load_steps=16 format=3 uid="uid://vj0wdy806o67"]
+
+[ext_resource type="Texture2D" uid="uid://dkxf0rgiv24ov" path="res://resources/graphics/ball.png" id="1_c1t8d"]
+[ext_resource type="Texture2D" uid="uid://whyym08gj15n" path="res://resources/graphics/bigboss.jpg" id="2_g4wvt"]
+[ext_resource type="Texture2D" uid="uid://cwxnr4xq00y1a" path="res://resources/graphics/cursor.png" id="3_g4wvt"]
+[ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="4_5em78"]
+[ext_resource type="Texture2D" uid="uid://c73fvljicos4v" path="res://resources/graphics/rocket.png" id="5_h30m1"]
+[ext_resource type="Texture2D" uid="uid://dhx34sps0gtf0" path="res://resources/graphics/sandwich.png" id="6_3mii5"]
+[ext_resource type="Texture2D" uid="uid://bj1hkjtnb6b4v" path="res://resources/graphics/sandwich_evil.png" id="7_r4875"]
+[ext_resource type="Texture2D" uid="uid://du3cc3gft1g2u" path="res://resources/graphics/shouriken.jpg" id="8_g735x"]
+[ext_resource type="Texture2D" uid="uid://6jqpjx3bquen" path="res://resources/graphics/siberiaset.png" id="9_lnt0k"]
+[ext_resource type="Texture2D" uid="uid://b5g15t6tq60rp" path="res://resources/graphics/sign.jpg" id="10_604bw"]
+[ext_resource type="Texture2D" uid="uid://dokwy07oiifb7" path="res://resources/graphics/tileset.png" id="11_0343s"]
+[ext_resource type="Texture2D" uid="uid://brqfk88ouy8dq" path="res://resources/graphics/tilesetC.png" id="12_lnt0k"]
+[ext_resource type="Texture2D" uid="uid://di20va6m5srt3" path="res://resources/graphics/tilespacet.png" id="13_0343s"]
+[ext_resource type="Texture2D" uid="uid://c1cmflj440p6t" path="res://resources/graphics/title.png" id="14_eh8ii"]
+[ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="15_eh8ii"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -24551.0
+offset_top = -14626.0
+offset_right = 21662.0
+offset_bottom = 14042.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 62.0
+offset_top = 2505.0
+offset_right = 213.0
+offset_bottom = 2556.0
+
+[node name="credits" type="Node2D" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="credits"]
+offset_top = 99.0
+offset_right = 253.0
+offset_bottom = 37180.0
+text = "the \"people\" who worked : compsand
+
+the \"people\" who didn't work : kotus2
+
+on sprites worked:
+
+ball.png
+
+
+compsand
+
+
+bigboss.jpg
+
+
+
+stolen
+
+
+cursor.png
+
+
+compsand
+
+
+ninja.png
+
+
+kotus2
+
+
+rocket.png
+
+
+
+
+
+
+stolen
+
+
+sandwiches.png's
+
+
+
+kotus2
+
+
+shouriken.jpg
+
+
+
+
+
+stolen
+
+
+siberiaset.png
+
+
+
+
+
+comspand
+
+
+sign.jpg
+
+
+
+
+
+
+
+stolen
+
+
+tileset.png
+
+
+
+
+scompsand
+
+
+tilesetC.png
+
+
+
+
+scotsnad
+
+
+tilespacet
+
+
+
+
+comspand
+
+
+title.png
+
+
+
+group project
+
+
+
+tree1.png
+
+
+
+
+
+kotus2"
+horizontal_alignment = 1
+
+[node name="Ball" type="Sprite2D" parent="credits"]
+position = Vector2(127, 356)
+scale = Vector2(5.96429, 5.82143)
+texture = ExtResource("1_c1t8d")
+
+[node name="Bigboss" type="Sprite2D" parent="credits"]
+position = Vector2(128, 481)
+scale = Vector2(0.505, 0.118)
+texture = ExtResource("2_g4wvt")
+
+[node name="Cursor" type="Sprite2D" parent="credits"]
+position = Vector2(123, 635)
+scale = Vector2(2.0625, 1.9375)
+texture = ExtResource("3_g4wvt")
+
+[node name="ColorRect" type="ColorRect" parent="credits"]
+offset_left = 109.0
+offset_top = 754.0
+offset_right = 149.0
+offset_bottom = 794.0
+
+[node name="Ninja" type="Sprite2D" parent="credits"]
+position = Vector2(126.438, 773)
+scale = Vector2(2.41204, 2.84583)
+texture = ExtResource("4_5em78")
+
+[node name="Rocket" type="Sprite2D" parent="credits"]
+position = Vector2(126, 954)
+scale = Vector2(0.2652, 0.2828)
+texture = ExtResource("5_h30m1")
+
+[node name="Sandwich" type="Sprite2D" parent="credits"]
+position = Vector2(76, 1139)
+scale = Vector2(1.6375, 1.76562)
+texture = ExtResource("6_3mii5")
+
+[node name="SandwichEvil" type="Sprite2D" parent="credits"]
+position = Vector2(179, 1136)
+scale = Vector2(1.6625, 1.875)
+texture = ExtResource("7_r4875")
+
+[node name="Shouriken" type="Sprite2D" parent="credits"]
+position = Vector2(128, 1336)
+scale = Vector2(0.120408, 0.103061)
+texture = ExtResource("8_g735x")
+
+[node name="Siberiaset" type="Sprite2D" parent="credits"]
+position = Vector2(139, 1554)
+scale = Vector2(2.125, 2.09375)
+texture = ExtResource("9_lnt0k")
+
+[node name="Sign" type="Sprite2D" parent="credits"]
+position = Vector2(130.125, 1771.13)
+scale = Vector2(0.755455, 0.785519)
+texture = ExtResource("10_604bw")
+
+[node name="Tileset" type="Sprite2D" parent="credits"]
+position = Vector2(142, 2006)
+scale = Vector2(2.07813, 1.92969)
+texture = ExtResource("11_0343s")
+
+[node name="TilesetC" type="Sprite2D" parent="credits"]
+position = Vector2(138.5, 2181)
+scale = Vector2(1.76563, 1.71875)
+texture = ExtResource("12_lnt0k")
+
+[node name="Tilespacet" type="Sprite2D" parent="credits"]
+position = Vector2(141.5, 2363.5)
+scale = Vector2(1.64063, 1.57812)
+texture = ExtResource("13_0343s")
+
+[node name="Title" type="Sprite2D" parent="credits"]
+position = Vector2(136, 2531)
+scale = Vector2(1.4454, 2.95)
+texture = ExtResource("14_eh8ii")
+
+[node name="Tree1" type="Sprite2D" parent="credits"]
+position = Vector2(129, 2734)
+texture = ExtResource("15_eh8ii")
