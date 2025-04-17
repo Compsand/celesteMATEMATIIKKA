@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bncrlqrpm83hi"]
+[gd_scene load_steps=12 format=3 uid="uid://bncrlqrpm83hi"]
 
 [ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="1_3vyb7"]
 [ext_resource type="AudioStream" uid="uid://bem6kvmemvvnx" path="res://resources/sfx/wasap.wav" id="2_dqkch"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cuwknbd3b2vbo" path="res://resources/music/ninjaSong.wav" id="3_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://kp7u5bs4x5sa" path="res://resources/music/mathSong.wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cy8xai10fxbc4" path="res://resources/sfx/mathWarning.wav" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://vijbtoe4kcnm" path="res://resources/sfx/21.wav" id="7_fjrip"]
 
 [sub_resource type="GDScript" id="GDScript_3vyb7"]
 script/source = "extends CharacterBody2D
@@ -28,6 +29,7 @@ var bossmode = bool(false)
 
 var bosslevel = 0
 var thisIsProbablyTheWorstWayToDoThisLol = 0
+var grater = 0
 
 func KILL():
 	print(\"skill issue\")
@@ -121,8 +123,11 @@ func _physics_process(delta: float) -> void:
 		$sordR.monitorable = false
 		$sordL.monitorable = true
 
+
 	if Input.is_action_just_pressed(\"suicide\") and mathMode == false and bossmode == false:
-		KILL()
+		if grater == 0:
+			KILL()
+
 
 #Enabling and disabling of math mode
 	if Input.is_action_just_pressed(\"debug_math\"):
@@ -186,17 +191,30 @@ func _physics_process(delta: float) -> void:
 				mathMode = false
 			else:
 				print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
+				if $Camera2D/mathSquare/mathField.text == \"21\":
+					$\"21\".play()
 				$Camera2D/mathSquare/mathField.text = \"\"
 				$Camera2D/mathSquare/mathField.placeholder_text = \"WRONG\"
 	
-	#Setting debug info
+	
+	##GRATER
+	if bosslevel == 1 and position.x > 1000 and grater == 0:
+		grater = 1
+	if grater == 1:
+		if $Ninja.flip_h == true: 
+			$Ninja.flip_h = false
+		else:
+			$Ninja.flip_h = true
+
+	##Setting debug info
 	if showDebug == true:
 		$Camera2D/debug.text = str(\"evil math build 2\",\"
 FPS: \",str(Engine.get_frames_per_second()),\"
 mathTimer: \", mathTimer,\"
 mathMode:\", str(mathMode), \"
 bossmode: \", str(bossmode), \"
-music:\", str(get_node_or_null(\"music\")) )
+music:\", str(get_node_or_null(\"music\")),\"
+grater:\", str(grater) )
 
 	
 
@@ -210,6 +228,8 @@ func _on_submit_button_pressed() -> void:
 		mathMode = false
 	else:
 		print(\"should've been \",correctAnswer,\" was \",$Camera2D/mathSquare/mathField.text)
+		if $Camera2D/mathSquare/mathField.text == \"21\":
+			$\"21\".play()
 		$Camera2D/mathSquare/mathField.text = \"\"
 		$Camera2D/mathSquare/mathField.placeholder_text = \"WRONG\"
 	
@@ -346,6 +366,9 @@ volume_db = -10.146
 [node name="MathWarning" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_tuyoq")
 volume_db = 10.883
+
+[node name="21" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fjrip")
 
 [node name="stupid" type="Area2D" parent="."]
 collision_mask = 0

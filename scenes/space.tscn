@@ -94,17 +94,18 @@ first:\", str(first))
 
 
 func _on_bidenbox_area_entered(area: Area2D) -> void:
-	$bosshp.value -= 1
-	if $bosshp.value < 1:
-		heeeellllyeahhhhhhhh = 0
-		$Bigboss.visible = 0
-		$bidenbox.queue_free()
-		$CPUParticles2D2.emission_sphere_radius = 32
-		$CPUParticles2D2.orbit_velocity_max= 1
-		$CPUParticles2D2.global_position.y = $bosshp.global_position.y
-		$LAZERRRR.queue_free()
-		$bosshp.visible = 0
-		$levelChange2/CollisionShape2D.global_position = $CPUParticles2D2.global_position
+	if heeeellllyeahhhhhhhh == 1:
+		$bosshp.value -= 1
+		if $bosshp.value < 1:
+			heeeellllyeahhhhhhhh = 0
+			$Bigboss.visible = 0
+			$bidenbox.queue_free()
+			$CPUParticles2D2.emission_sphere_radius = 32
+			$CPUParticles2D2.orbit_velocity_max= 1
+			$CPUParticles2D2.global_position.y = $bosshp.global_position.y
+			$LAZERRRR.queue_free()
+			$bosshp.visible = 0
+			$levelChange2.position = $CPUParticles2D2.position
 		
 "
 
@@ -147,8 +148,10 @@ sources/0 = SubResource("TileSetAtlasSource_3yr0r")
 [sub_resource type="GDScript" id="GDScript_7a7lp"]
 script/source = "extends Area2D
 
+
+
 func _on_area_entered(area: Area2D) -> void:
-	get_tree().change_scene_to_file(\"res://scenes/credits.tscn\")
+	get_tree().change_scene_to_file(\"res://credits.tscn\")
 	print(\"hamburger cheezburger big mac whopper\")
 "
 
@@ -325,7 +328,6 @@ collision_layer = 0
 script = SubResource("GDScript_7a7lp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="levelChange2"]
-position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_rlquo")
 
 [node name="LAZERRRR" type="Node2D" parent="."]
@@ -477,6 +479,7 @@ position = Vector2(89, 35)
 rotation = 1.57079
 shape = SubResource("RectangleShape2D_tc3qt")
 
+[connection signal="area_entered" from="levelChange2" to="levelChange2" method="_on_area_entered"]
 [connection signal="area_entered" from="LAZERRRR/levelChange" to="LAZERRRR/levelChange" method="_on_area_entered"]
 [connection signal="area_entered" from="bidenbox" to="." method="_on_bidenbox_area_entered"]
 [connection signal="area_entered" from="bidenTrigger" to="." method="_on_biden_trigger_area_entered"]

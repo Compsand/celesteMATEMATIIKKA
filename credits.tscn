@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://vj0wdy806o67"]
+[gd_scene load_steps=21 format=3 uid="uid://vj0wdy806o67"]
 
 [ext_resource type="Texture2D" uid="uid://dkxf0rgiv24ov" path="res://resources/graphics/ball.png" id="1_c1t8d"]
 [ext_resource type="Texture2D" uid="uid://whyym08gj15n" path="res://resources/graphics/bigboss.jpg" id="2_g4wvt"]
@@ -15,6 +15,22 @@
 [ext_resource type="Texture2D" uid="uid://di20va6m5srt3" path="res://resources/graphics/tilespacet.png" id="13_0343s"]
 [ext_resource type="Texture2D" uid="uid://c1cmflj440p6t" path="res://resources/graphics/title.png" id="14_eh8ii"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="15_eh8ii"]
+[ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="16_3w3uj"]
+[ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="17_fa2y2"]
+[ext_resource type="Texture2D" uid="uid://bx3sps0c4of8u" path="res://resources/graphics/wunkC.jpg" id="18_hh5ci"]
+[ext_resource type="Texture2D" uid="uid://uu0kn3fgehp0" path="res://resources/graphics/wunkglorp.jpg" id="19_3wb5j"]
+
+[sub_resource type="GDScript" id="GDScript_3w3uj"]
+script/source = "extends Node2D
+
+var firstwait = 500
+
+func _process(delta: float) -> void:
+	if firstwait > 0:
+		firstwait -= 1
+	else:
+		position.y -= 40 * delta
+"
 
 [node name="Node2D" type="Node2D"]
 
@@ -25,13 +41,9 @@ offset_right = 21662.0
 offset_bottom = 14042.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 62.0
-offset_top = 2505.0
-offset_right = 213.0
-offset_bottom = 2556.0
-
 [node name="credits" type="Node2D" parent="."]
+position = Vector2(0, 50)
+script = SubResource("GDScript_3w3uj")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="credits"]
 offset_top = 99.0
@@ -78,7 +90,7 @@ rocket.png
 stolen
 
 
-sandwiches.png's
+sandwiches.pngs
 
 
 
@@ -152,11 +164,67 @@ tree1.png
 
 
 
-kotus2"
+kotus2
+
+
+
+wunk.jpg
+
+
+
+
+stolen
+
+
+
+wunkC.jpg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+kotus2
+
+
+
+wunkglorp.jpg
+
+
+
+
+
+compsand
+
+
+
+music list:
+
+
+ninjasong by compsand
+
+mathsong by compsand
+
+soberia craze by kotus2
+
+china advance by kotus2
+
+space by kotus2
+
+biden bess theme by compsand"
 horizontal_alignment = 1
 
 [node name="Ball" type="Sprite2D" parent="credits"]
-position = Vector2(127, 356)
+position = Vector2(125, 333)
 scale = Vector2(5.96429, 5.82143)
 texture = ExtResource("1_c1t8d")
 
@@ -226,6 +294,12 @@ position = Vector2(141.5, 2363.5)
 scale = Vector2(1.64063, 1.57812)
 texture = ExtResource("13_0343s")
 
+[node name="ColorRect2" type="ColorRect" parent="credits"]
+offset_left = 60.0
+offset_top = 2503.0
+offset_right = 212.0
+offset_bottom = 2560.0
+
 [node name="Title" type="Sprite2D" parent="credits"]
 position = Vector2(136, 2531)
 scale = Vector2(1.4454, 2.95)
@@ -234,3 +308,38 @@ texture = ExtResource("14_eh8ii")
 [node name="Tree1" type="Sprite2D" parent="credits"]
 position = Vector2(129, 2734)
 texture = ExtResource("15_eh8ii")
+
+[node name="ColorRect3" type="ColorRect" parent="credits"]
+offset_top = -50.0
+offset_right = 256.0
+offset_bottom = 94.0
+
+[node name="Title2" type="Sprite2D" parent="credits"]
+position = Vector2(129, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("14_eh8ii")
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="credits"]
+offset_top = 29.0
+offset_right = 255.0
+offset_bottom = 94.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("16_3w3uj")
+text = "YOU WIN!
+(normal ending)"
+horizontal_alignment = 1
+
+[node name="Wunk" type="Sprite2D" parent="credits"]
+position = Vector2(126, 2954)
+scale = Vector2(0.1815, 0.179)
+texture = ExtResource("17_fa2y2")
+
+[node name="Wunkglorp" type="Sprite2D" parent="credits"]
+position = Vector2(128, 3633)
+scale = Vector2(0.22675, 0.22675)
+texture = ExtResource("19_3wb5j")
+
+[node name="WunkC" type="Sprite2D" parent="credits"]
+position = Vector2(125, 3290.75)
+scale = Vector2(0.082, 0.651)
+texture = ExtResource("18_hh5ci")
