@@ -7,4 +7,4 @@ A, right arrow == mene oikealle
 S, down arrow == mene parempaan paikkaan
 
 
-You need to defeat the equasion
+x, hiiri == ammu ninjatähti
