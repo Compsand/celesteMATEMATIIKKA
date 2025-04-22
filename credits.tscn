@@ -24,13 +24,15 @@
 [sub_resource type="GDScript" id="GDScript_3w3uj"]
 script/source = "extends Node2D
 
-var firstwait = 500
+var firstwait = 5
 
 func _process(delta: float) -> void:
 	if firstwait > 0:
-		firstwait -= 1
+		firstwait -= delta
 	else:
 		position.y -= 40 * delta
+		if $end.global_position.y < 0:
+				get_tree().change_scene_to_file(\"res://scenes/Menu.tscn\")
 "
 
 [node name="Node2D" type="Node2D"]
@@ -244,9 +246,48 @@ sword.mp3 by DJ Stolen
 wasap.wav by wasap
 
 
+
 käsikirja.txt by kotus2
 
-THE GAME PLAN.txt by kotus2"
+THE GAME PLAN.txt by kotus2
+
+
+
+programming by compsand
+
+made with godot
+
+uhhhhhhhhhhhhh
+hhhhhhhh
+hhh
+hhhhhh
+hhhh
+hhhhhhh
+hhh
+hhhhh
+hhhhhh
+
+
+this line of text by compsand
+
+
+publisher: missing
+
+
+
+ummmm
+
+good job
+
+you beat evil math
+
+and got the normal ending
+
+wow
+
+cool
+
+"
 horizontal_alignment = 1
 
 [node name="Ball" type="Sprite2D" parent="credits"]
@@ -374,3 +415,6 @@ texture = ExtResource("18_hh5ci")
 position = Vector2(128, 3862)
 scale = Vector2(0.519058, 0.480088)
 texture = ExtResource("20_hh5ci")
+
+[node name="end" type="Node2D" parent="credits"]
+position = Vector2(123, 5553)
