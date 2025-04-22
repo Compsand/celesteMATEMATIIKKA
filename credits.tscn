@@ -36,10 +36,10 @@ func _process(delta: float) -> void:
 [node name="Node2D" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -24551.0
-offset_top = -14626.0
-offset_right = 21662.0
-offset_bottom = 14042.0
+offset_left = -26132.0
+offset_top = -13522.0
+offset_right = 20081.0
+offset_bottom = 15146.0
 color = Color(0, 0, 0, 1)
 
 [node name="credits" type="Node2D" parent="."]
@@ -242,7 +242,11 @@ mathWarning.wav I hope it's not stolen
 sword.mp3 by DJ Stolen
 
 wasap.wav by wasap
-"
+
+
+käsikirja.txt by kotus2
+
+THE GAME PLAN.txt by kotus2"
 horizontal_alignment = 1
 
 [node name="Ball" type="Sprite2D" parent="credits"]
