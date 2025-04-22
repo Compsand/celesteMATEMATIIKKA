@@ -278,6 +278,86 @@ publisher: missing
 
 
 
+Special Thanks !!!
+
+Shrek the Ogre
+
+Jussi.jpg
+
+Dr. Pebba
+
+The Master of The Universe  J. M.
+
+Coop Jäätee 1.5 l sitruuna
+
+The creature...
+
+The apple I'm eating rn
+
+silli
+
+jalo
+
+Вкусно и точка
+
+the pope
+
+Hatsune Miku
+
+Kasane Teto
+
+Sans Undertale
+
+Luigi
+
+Gordon Freeman 
+
+terraria calamity
+
+Lightning McQueen
+
+Horizontally Spinning Rat
+
+Steve
+
+Quagmire Toilet gaming
+
+Max Verstappen
+
+WinRAR
+
+7zip
+
+He who is....
+
+Gabe Newell
+
+Shrimps and Krills
+
+Gabriel uLTRAKILL
+
+The Bron
+
+The fumos
+
+heavy weapons guy
+
+The dog of wisdom
+
+Dr. Heinz Doofenshmirtz
+
+NOOO What happened to my clock
+
+Richard Watterson
+
+▇▅▆▇▆▅▅█
+
+
+
+AND
+YOU THE PLAYER
+
+
 ummmm
 
 good job
@@ -420,7 +500,7 @@ scale = Vector2(0.519058, 0.480088)
 texture = ExtResource("20_hh5ci")
 
 [node name="end" type="Node2D" parent="credits"]
-position = Vector2(123, 5553)
+position = Vector2(128, 7422)
 
 [node name="music" type="AudioStreamPlayer" parent="credits"]
 stream = ExtResource("21_3wb5j")
