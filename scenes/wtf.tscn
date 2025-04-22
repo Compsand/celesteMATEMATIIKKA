@@ -123,7 +123,7 @@ script = ExtResource("1_xlojc")
 
 [node name="Camera3D" type="Camera3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.538719, 0)
-fov = 100.0
+fov = 60.6
 
 [node name="Area3D" type="Area3D" parent="player"]
 collision_layer = 2

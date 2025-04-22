@@ -1,0 +1,172 @@
+[gd_scene load_steps=17 format=3 uid="uid://b7atwmarfi3pb"]
+
+[ext_resource type="Texture2D" uid="uid://bylwcyv3812bx" path="res://resources/other/funsky.png" id="1_nsq8f"]
+[ext_resource type="Script" uid="uid://dp7vcm3tbquuv" path="res://character_body_3d.gd" id="2_dwaa3"]
+[ext_resource type="Texture2D" uid="uid://dvxriyr1rduca" path="res://resources/other/cat.png" id="3_mrmoa"]
+[ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="4_xjg5w"]
+[ext_resource type="AudioStream" uid="uid://hjpp1oxw1juk" path="res://resources/other/Cat_idle2.ogg.mp3" id="5_w000g"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x2ixh"]
+sky_top_color = Color(0.255441, 0.952026, 1, 1)
+sky_horizon_color = Color(0.843941, 0, 0.268367, 1)
+
+[sub_resource type="Sky" id="Sky_wfq8o"]
+sky_material = SubResource("ProceduralSkyMaterial_x2ixh")
+
+[sub_resource type="Environment" id="Environment_wfq8o"]
+background_mode = 2
+sky = SubResource("Sky_wfq8o")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emfsg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xlojc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlojc"]
+size = Vector3(48.7373, 1, 44.6949)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2ixh"]
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("1_nsq8f")
+
+[sub_resource type="BoxMesh" id="BoxMesh_mrmoa"]
+size = Vector3(-40, -20, -40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjg5w"]
+
+[sub_resource type="GDScript" id="GDScript_xjg5w"]
+script/source = "extends Sprite3D
+
+var tail = 40
+
+func _physics_process(delta: float) -> void:
+	tail -= 1
+	if tail < 1:
+		if frame_coords.x == 0:
+			frame_coords.x = 1
+		else:
+			frame_coords.x = 0
+		tail = 40
+	look_at(Vector3($\"../player\".position.x, position.y, $\"../player\".position.z))
+"
+
+[sub_resource type="GDScript" id="GDScript_w000g"]
+script/source = "extends ColorRect
+
+
+func Text(text):
+	$text.text = text
+	$meow.play()
+
+var tail = 40
+
+func _physics_process(delta: float) -> void:
+	tail -= 1
+	if tail < 1:
+		if $cat.frame_coords.x == 0:
+			$cat.frame_coords.x = 1
+		else:
+			$cat.frame_coords.x = 0
+		tail = 40
+	
+	if $meow.playing:
+		$cat.frame_coords.y = 1
+	else:
+		$cat.frame_coords.y = 0
+	
+	if Input.is_action_just_pressed(\"debug_math\"):
+		Text(\"debug meow meow :3333\")
+"
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wfq8o")
+
+[node name="player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0153441, 1.20188, 18.2521)
+collision_layer = 3
+script = ExtResource("2_dwaa3")
+
+[node name="Camera3D" type="Camera3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.538719, 0)
+fov = 90.0
+
+[node name="Area3D" type="Area3D" parent="player"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00454712, 0)
+shape = SubResource("CapsuleShape3D_emfsg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00454712, 0)
+shape = SubResource("CapsuleShape3D_emfsg")
+
+[node name="StaticBody3D13" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0299311, -0.191742, 0.163348)
+physics_material_override = SubResource("PhysicsMaterial_xlojc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.335042, -0.31872, 1.57294)
+shape = SubResource("BoxShape3D_xlojc")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D13"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -20.6953, 0.335042, 1.57294)
+shape = SubResource("BoxShape3D_xlojc")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D13"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 20.4774, 0.335042, 1.57294)
+shape = SubResource("BoxShape3D_xlojc")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D13"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 1.57527, 0.335042, 20.4781)
+shape = SubResource("BoxShape3D_xlojc")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D13"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, 1.57527, 0.335042, -20.8493)
+shape = SubResource("BoxShape3D_xlojc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.547709, -0.836669, 0, 0.354121, 0.231818, 0.906013, -0.758032, -0.496231, 0.423251, 28.5942, 47.383, -15.2848)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.0314, 0)
+material_override = SubResource("StandardMaterial3D_x2ixh")
+mesh = SubResource("BoxMesh_mrmoa")
+surface_material_override/0 = SubResource("StandardMaterial3D_xjg5w")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(9.35736, 0, 0, 0, 9.35736, 0, 0, 0, 1, 0, 2.09962, 0)
+texture = ExtResource("3_mrmoa")
+hframes = 2
+vframes = 2
+script = SubResource("GDScript_xjg5w")
+
+[node name="textbox" type="ColorRect" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -89.0
+offset_right = 89.0
+offset_bottom = 51.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+script = SubResource("GDScript_w000g")
+
+[node name="text" type="RichTextLabel" parent="textbox"]
+offset_left = 43.0
+offset_top = 2.0
+offset_right = 176.0
+offset_bottom = 49.0
+theme_override_fonts/normal_font = ExtResource("4_xjg5w")
+text = "placeholder lol"
+
+[node name="cat" type="Sprite2D" parent="textbox"]
+position = Vector2(23, 24)
+texture = ExtResource("3_mrmoa")
+hframes = 2
+vframes = 2
+
+[node name="meow" type="AudioStreamPlayer" parent="textbox"]
+stream = ExtResource("5_w000g")
