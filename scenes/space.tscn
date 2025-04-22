@@ -79,6 +79,9 @@ func _physics_process(delta: float) -> void:
 			if atktime < 1:
 				attack = randi() % 2 + 1
 				first = true
+	else:
+		if $bosshp.value < 1:
+			$player/Bidenloop.volume_db -= 0.5
 
 
 	if Input.is_action_just_pressed(\"debug_info\"):
@@ -106,7 +109,6 @@ func _on_bidenbox_area_entered(area: Area2D) -> void:
 			$LAZERRRR.queue_free()
 			$bosshp.visible = 0
 			$levelChange2.position = $CPUParticles2D2.position
-		
 "
 
 [sub_resource type="Gradient" id="Gradient_85sbg"]

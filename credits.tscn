@@ -476,7 +476,9 @@ offset_bottom = 94.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("16_3w3uj")
 text = "YOU WIN!
-(normal ending)"
+(normal ending)
+|                         |
+\\/        credits:        \\/"
 horizontal_alignment = 1
 
 [node name="Wunk" type="Sprite2D" parent="credits"]
@@ -504,3 +506,4 @@ position = Vector2(128, 7422)
 
 [node name="music" type="AudioStreamPlayer" parent="credits"]
 stream = ExtResource("21_3wb5j")
+volume_db = 9.613
