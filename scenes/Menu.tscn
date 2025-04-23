@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyilerake8w6f"]
+[gd_scene load_steps=6 format=3 uid="uid://cyilerake8w6f"]
 
+[ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="1_11y2r"]
+[ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_upctu"]
 [ext_resource type="Texture2D" uid="uid://c1cmflj440p6t" path="res://resources/graphics/title.png" id="1_xdvgc"]
+[ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="4_o0tnf"]
 
 [sub_resource type="GDScript" id="GDScript_xdvgc"]
 script/source = "extends Button
@@ -13,15 +16,100 @@ func _pressed() -> void:
 
 [node name="Menu" type="Node2D"]
 
+[node name="Wunk" type="Sprite2D" parent="."]
+position = Vector2(209, 91)
+scale = Vector2(0.075, 0.0625)
+texture = ExtResource("1_11y2r")
+
+[node name="Tree1" type="Sprite2D" parent="."]
+position = Vector2(271, 174)
+scale = Vector2(1.12, 0.87)
+texture = ExtResource("1_upctu")
+
+[node name="Tree1" type="Sprite2D" parent="Tree1"]
+position = Vector2(-198.214, -14.9425)
+scale = Vector2(1.12, 0.87)
+texture = ExtResource("1_upctu")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = 128.0
+offset_top = 15.0
+offset_right = 337.0
+offset_bottom = 209.0
+rotation = 0.785397
+color = Color(0.450648, 0.450648, 0.450648, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 128.0
+offset_top = 15.0
+offset_right = 144.0
+offset_bottom = 77.0
+rotation = 0.785397
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+offset_left = 39.5791
+offset_top = -28.9468
+offset_right = 54.5791
+offset_bottom = 34.0532
+rotation = -1.0472
+pivot_offset = Vector2(19.1996, 54.3375)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+offset_left = 6.36397
+offset_top = 11.0227
+offset_right = 21.364
+offset_bottom = 74.0227
+rotation = -0.523598
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect/ColorRect"]
+offset_left = -51.6188
+offset_top = 23.3346
+offset_right = -36.6188
+offset_bottom = 86.3346
+rotation = -1.83259
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect/ColorRect/ColorRect"]
+offset_left = 18.5098
+offset_top = 62.0595
+offset_right = 33.5098
+offset_bottom = 125.06
+rotation = -2.87979
+
 [node name="Button" type="Button" parent="."]
-offset_left = 61.0
-offset_top = 88.0
-offset_right = 184.0
-offset_bottom = 119.0
+offset_left = 66.0
+offset_top = 110.0
+offset_right = 189.0
+offset_bottom = 141.0
 text = "Start the game"
 script = SubResource("GDScript_xdvgc")
 
 [node name="Title" type="Sprite2D" parent="."]
-position = Vector2(127, 32)
+position = Vector2(127, 17)
 scale = Vector2(2.3, 2.3)
 texture = ExtResource("1_xdvgc")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+offset_left = 112.0
+offset_top = 37.0
+offset_right = 127.0
+offset_bottom = 100.0
+rotation = -0.785397
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+offset_left = 120.0
+offset_top = 59.0
+offset_right = 135.0
+offset_bottom = 78.0
+rotation = 0.261799
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+offset_left = 93.0
+offset_top = 72.0
+offset_right = 108.0
+offset_bottom = 135.0
+rotation = -1.83259
+
+[node name="Ninja" type="Sprite2D" parent="."]
+position = Vector2(53, 79)
+rotation = -0.785397
+texture = ExtResource("4_o0tnf")
