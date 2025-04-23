@@ -1,9 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://ybw76efvy272"]
+[gd_scene load_steps=12 format=4 uid="uid://ybw76efvy272"]
 
 [ext_resource type="Texture2D" uid="uid://b47u8b1ro5rc5" path="res://resources/other/climbset.png" id="1_x5dl2"]
+[ext_resource type="AudioStream" uid="uid://db1l4q3l8ssxs" path="res://resources/other/up.mp3" id="3_7asku"]
 [ext_resource type="Texture2D" uid="uid://bylwcyv3812bx" path="res://resources/other/funsky.png" id="4_7asku"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="4_85gsj"]
-[ext_resource type="AudioStream" uid="uid://cak0oiuh82e1p" path="res://resources/music/soberia craze.mp3" id="6_4vg4f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lp2f5"]
 texture = ExtResource("1_x5dl2")
@@ -42,6 +42,15 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 17
 sources/0 = SubResource("TileSetAtlasSource_lp2f5")
 
+[sub_resource type="GDScript" id="GDScript_22lnm"]
+script/source = "extends Node2D
+
+func _process(delta: float) -> void:
+	$funskyR.rotation_degrees += delta * 3
+	$funskyG.rotation_degrees += delta * 8
+	$funskyB.rotation_degrees += delta * 16
+"
+
 [sub_resource type="GDScript" id="GDScript_x5dl2"]
 script/source = "extends Node
 
@@ -49,6 +58,7 @@ var shuriken = 0
 
 func _process(_delta: float) -> void:
 	$\"../Camera2D\".global_position.x = 0
+	$\"../skies\".global_position.x = 0
 "
 
 [sub_resource type="GDScript" id="GDScript_f2fa8"]
@@ -97,7 +107,32 @@ tile_set = SubResource("TileSet_7vgpf")
 [node name="player" parent="." instance=ExtResource("4_85gsj")]
 
 [node name="music" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource("6_4vg4f")
+stream = ExtResource("3_7asku")
+volume_db = -4.37
+
+[node name="skies" type="Node2D" parent="player"]
+script = SubResource("GDScript_22lnm")
+
+[node name="funskyR" type="Sprite2D" parent="player/skies"]
+modulate = Color(1, 0, 0, 1)
+z_index = -1
+position = Vector2(-1.52588e-05, 7.62939e-06)
+scale = Vector2(0.604479, 0.604479)
+texture = ExtResource("4_7asku")
+
+[node name="funskyG" type="Sprite2D" parent="player/skies"]
+modulate = Color(0, 1, 0, 0.588235)
+z_index = -1
+position = Vector2(-1.52588e-05, 7.62939e-06)
+scale = Vector2(0.604479, 0.604479)
+texture = ExtResource("4_7asku")
+
+[node name="funskyB" type="Sprite2D" parent="player/skies"]
+modulate = Color(0, 0, 1, 0.352941)
+z_index = -1
+position = Vector2(-1.52588e-05, 7.62939e-06)
+scale = Vector2(0.604479, 0.604479)
+texture = ExtResource("4_7asku")
 
 [node name="cameralocker_lol" type="Node" parent="player"]
 script = SubResource("GDScript_x5dl2")

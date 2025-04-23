@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://c1bqsuhwcd74b"]
+[gd_scene load_steps=34 format=4 uid="uid://c1bqsuhwcd74b"]
 
 [ext_resource type="Texture2D" uid="uid://di20va6m5srt3" path="res://resources/graphics/tilespacet.png" id="1_a65qk"]
 [ext_resource type="PackedScene" uid="uid://cuhq11mi636d1" path="res://scenes/projectile.tscn" id="1_rlquo"]
@@ -13,7 +13,6 @@
 [ext_resource type="FontFile" uid="uid://b0vkvqkvkw5pm" path="res://resources/other/fixedsys.ttf" id="7_ocmas"]
 [ext_resource type="Texture2D" uid="uid://bvbtbncccm2n4" path="res://resources/other/message.png" id="11_85sbg"]
 [ext_resource type="Texture2D" uid="uid://bkpbf8t05v5gr" path="res://resources/graphics/xplodesheet.png" id="13_7a7lp"]
-[ext_resource type="AudioStream" uid="uid://b7ju6l1o484p3" path="res://resources/sfx/deltarune-explosion.mp3" id="14_7wx0h"]
 
 [sub_resource type="GDScript" id="GDScript_85sbg"]
 script/source = "extends Node2D
@@ -160,11 +159,7 @@ script/source = "extends Area2D
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if Global.cat:
-		get_tree().change_scene_to_file(\"res://resources/other/sEnd.tscn\")
-	else:
-		get_tree().change_scene_to_file(\"res://credits.tscn\")
-	
+	get_tree().change_scene_to_file(\"res://credits.tscn\")
 	print(\"hamburger cheezburger big mac whopper\")
 "
 
@@ -231,27 +226,14 @@ size = Vector2(15, 31)
 [sub_resource type="GDScript" id="GDScript_7wx0h"]
 script/source = "extends Sprite2D
 
-var first = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if $\"..\".heeeellllyeahhhhhhhh == 0 and $\"../player\".bossmode == true:
 		visible = true
-		if first == 0:
-			$sound.play()
-			$Timer.start()
-			first = 1
-
-
-
-
-
-func _on_timer_timeout() -> void:
-	$Timer.start()
-	if frame == 16:
-		queue_free()
-	else:
 		frame += 1
+		if frame > 17:
+			queue_free()
 "
 
 [node name="testLevel" type="Node2D"]
@@ -439,8 +421,8 @@ offset_top = -129.0
 offset_right = 673.0
 offset_bottom = -109.0
 theme_override_fonts/font = ExtResource("7_ocmas")
-max_value = 35.0
-value = 35.0
+max_value = 50.0
+value = 50.0
 
 [node name="bossDoor" type="StaticBody2D" parent="."]
 position = Vector2(488.076, -116.506)
@@ -526,17 +508,9 @@ texture = ExtResource("13_7a7lp")
 hframes = 17
 script = SubResource("GDScript_7wx0h")
 
-[node name="Timer" type="Timer" parent="explode"]
-wait_time = 0.1
-
-[node name="sound" type="AudioStreamPlayer" parent="explode"]
-stream = ExtResource("14_7wx0h")
-volume_db = 5.244
-
 [connection signal="area_entered" from="levelChange2" to="levelChange2" method="_on_area_entered"]
 [connection signal="area_entered" from="LAZERRRR/levelChange" to="LAZERRRR/levelChange" method="_on_area_entered"]
 [connection signal="area_entered" from="bidenbox" to="." method="_on_bidenbox_area_entered"]
 [connection signal="area_entered" from="bidenTrigger" to="." method="_on_biden_trigger_area_entered"]
 [connection signal="area_entered" from="bidenTrigger" to="Bigboss" method="_on_biden_trigger_area_entered"]
 [connection signal="area_entered" from="bidenTrigger" to="bidenTrigger" method="_on_area_entered"]
-[connection signal="timeout" from="explode/Timer" to="explode" method="_on_timer_timeout"]
