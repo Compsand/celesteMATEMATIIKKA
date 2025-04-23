@@ -34,6 +34,11 @@ func atkend(breaktime):
 		attack = 0
 		atktime = breaktime
 
+func _ready() -> void:
+	if Global.diesound == false:
+		Global.diesound = true
+	else:
+		$player/Udedlol.play()
 
 func _physics_process(delta: float) -> void:
 

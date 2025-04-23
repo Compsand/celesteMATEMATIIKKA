@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bncrlqrpm83hi"]
+[gd_scene load_steps=13 format=3 uid="uid://bncrlqrpm83hi"]
 
 [ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="1_3vyb7"]
 [ext_resource type="AudioStream" uid="uid://bem6kvmemvvnx" path="res://resources/sfx/wasap.wav" id="2_dqkch"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://kp7u5bs4x5sa" path="res://resources/music/mathSong.wav" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://cy8xai10fxbc4" path="res://resources/sfx/mathWarning.wav" id="6_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://vijbtoe4kcnm" path="res://resources/sfx/21.wav" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://de4sxsgq012fq" path="res://resources/sfx/udedlol.wav" id="8_smehm"]
 
 [sub_resource type="GDScript" id="GDScript_3vyb7"]
 script/source = "extends CharacterBody2D
@@ -33,6 +34,7 @@ var grater = 0
 
 func KILL():
 	print(\"skill issue\")
+	$Udedlol.play()
 	position = Vector2(0,0)
 	if mathMode == true:
 		mathTimer = randi() % 700 + 600
@@ -376,6 +378,9 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="stupid"]
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_g2els")
+
+[node name="Udedlol" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_smehm")
 
 [connection signal="area_entered" from="killbox" to="." method="_on_killbox_area_entered"]
 [connection signal="pressed" from="Camera2D/mathSquare/submitButton" to="." method="_on_submit_button_pressed"]
