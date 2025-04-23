@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b7atwmarfi3pb"]
+[gd_scene load_steps=20 format=3 uid="uid://b7atwmarfi3pb"]
 
 [ext_resource type="Texture2D" uid="uid://bylwcyv3812bx" path="res://resources/other/funsky.png" id="1_nsq8f"]
 [ext_resource type="Script" uid="uid://dp7vcm3tbquuv" path="res://character_body_3d.gd" id="2_dwaa3"]
@@ -52,12 +52,29 @@ func _physics_process(delta: float) -> void:
 [sub_resource type="GDScript" id="GDScript_w000g"]
 script/source = "extends ColorRect
 
+var textlist = [\"unused text lol\",\"hi\",\"welcome to this cool room\", \"there was supposed to be\",\"a bossfight here\", \"but i ran out of time\",\"lol\",\"use the portal behind me\", \"to go to the final boss\",\"the normal one\", false]
+
+var currentText = 0
 
 func Text(text):
+	visible = true
 	$text.text = text
+	$meow.pitch_scale = float(randi() % 4 + 10) / 10
 	$meow.play()
 
+func advanceText():
+		currentText += 1
+		if textlist[currentText]:
+			Text(textlist[currentText])
+		else:
+			visible = false
+			currentText -= 1
+
+func _ready() -> void:
+	Global.cat = true
+
 var tail = 40
+
 
 func _physics_process(delta: float) -> void:
 	tail -= 1
@@ -73,8 +90,41 @@ func _physics_process(delta: float) -> void:
 	else:
 		$cat.frame_coords.y = 0
 	
-	if Input.is_action_just_pressed(\"debug_math\"):
-		Text(\"debug meow meow :3333\")
+	if Input.is_action_just_pressed(\"debug_info\"):
+		Text(\"debug meow meow\")
+	
+	if Input.is_action_just_pressed(\"shoot\") and visible:
+		advanceText()
+"
+
+[sub_resource type="GDScript" id="GDScript_nsq8f"]
+script/source = "extends Area3D
+
+
+
+
+func _on_area_entered(area: Area3D) -> void:
+	get_tree().change_scene_to_file(\"res://scenes/space.tscn\")
+"
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_dwaa3"]
+height = 3.76025
+radius = 1.30371
+
+[sub_resource type="GDScript" id="GDScript_7dqdc"]
+script/source = "extends Sprite3D
+
+var delay = 0.2
+
+func _process(delta: float) -> void:
+	if delay < 0:
+		delay = 0.2
+		if frame < 3:
+			frame += 1
+		else:
+			frame = 0
+	else:
+		delay -= delta
 "
 
 [node name="Node3D" type="Node3D"]
@@ -155,12 +205,24 @@ color = Color(0, 0, 0, 1)
 script = SubResource("GDScript_w000g")
 
 [node name="text" type="RichTextLabel" parent="textbox"]
+layout_mode = 0
 offset_left = 43.0
 offset_top = 2.0
 offset_right = 176.0
 offset_bottom = 49.0
 theme_override_fonts/normal_font = ExtResource("4_xjg5w")
-text = "placeholder lol"
+text = "oh"
+
+[node name="infotext" type="RichTextLabel" parent="textbox"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 49.0
+offset_right = 220.0
+offset_bottom = 70.0
+theme_override_colors/default_color = Color(1, 1, 1, 0.592157)
+theme_override_fonts/normal_font = ExtResource("4_xjg5w")
+theme_override_font_sizes/normal_font_size = 12
+text = "x or lmb to proceed"
 
 [node name="cat" type="Sprite2D" parent="textbox"]
 position = Vector2(23, 24)
@@ -170,3 +232,31 @@ vframes = 2
 
 [node name="meow" type="AudioStreamPlayer" parent="textbox"]
 stream = ExtResource("5_w000g")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6093, -8.52906, 30.7772)
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_nsq8f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5863, 11.2206, -37.2482)
+shape = SubResource("CylinderShape3D_dwaa3")
+
+[node name="Sprite3D" type="Sprite3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30.5831, 10.5669, -37.2326)
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("1_nsq8f")
+hframes = 2
+vframes = 2
+script = SubResource("GDScript_7dqdc")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Area3D"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 30.5831, 10.5669, -37.2326)
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("1_nsq8f")
+hframes = 2
+vframes = 2
+script = SubResource("GDScript_7dqdc")
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
