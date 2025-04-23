@@ -1,17 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyilerake8w6f"]
+[gd_scene load_steps=9 format=3 uid="uid://cyilerake8w6f"]
 
 [ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="1_11y2r"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_upctu"]
 [ext_resource type="Texture2D" uid="uid://c1cmflj440p6t" path="res://resources/graphics/title.png" id="1_xdvgc"]
 [ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="4_o0tnf"]
+[ext_resource type="Texture2D" uid="uid://dvxriyr1rduca" path="res://resources/other/cat.png" id="5_b6cxs"]
+[ext_resource type="Script" uid="uid://dywvchmr0vvrb" path="res://scenes/cat.gd" id="6_aaywf"]
 
 [sub_resource type="GDScript" id="GDScript_xdvgc"]
 script/source = "extends Button
 
-
+func _ready() -> void:
+	if Global.cat:
+		$\"../Cat\".visible = true
 
 func _pressed() -> void:
+	Global.cat = 0
 	get_tree().change_scene_to_file(\"res://scenes/tile_level.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_o0tnf"]
+script/source = "extends Window
+
+
+
+
+func _on_close_requested() -> void:
+	visible = false
+
+
+func _on_button_2_pressed() -> void:
+	visible = true
 "
 
 [node name="Menu" type="Node2D"]
@@ -47,6 +66,7 @@ offset_bottom = 77.0
 rotation = 0.785397
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
 offset_left = 39.5791
 offset_top = -28.9468
 offset_right = 54.5791
@@ -55,6 +75,7 @@ rotation = -1.0472
 pivot_offset = Vector2(19.1996, 54.3375)
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+layout_mode = 0
 offset_left = 6.36397
 offset_top = 11.0227
 offset_right = 21.364
@@ -62,6 +83,7 @@ offset_bottom = 74.0227
 rotation = -0.523598
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_left = -51.6188
 offset_top = 23.3346
 offset_right = -36.6188
@@ -69,6 +91,7 @@ offset_bottom = 86.3346
 rotation = -1.83259
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
 offset_left = 18.5098
 offset_top = 62.0595
 offset_right = 33.5098
@@ -84,7 +107,7 @@ text = "Start the game"
 script = SubResource("GDScript_xdvgc")
 
 [node name="Title" type="Sprite2D" parent="."]
-position = Vector2(127, 17)
+position = Vector2(140, 20)
 scale = Vector2(2.3, 2.3)
 texture = ExtResource("1_xdvgc")
 
@@ -113,3 +136,55 @@ rotation = -1.83259
 position = Vector2(53, 79)
 rotation = -0.785397
 texture = ExtResource("4_o0tnf")
+
+[node name="Window" type="Window" parent="."]
+initial_position = 4
+size = Vector2i(600, 300)
+visible = false
+script = SubResource("GDScript_o0tnf")
+
+[node name="ColorRect" type="ColorRect" parent="Window"]
+offset_right = 1024.0
+offset_bottom = 500.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Window"]
+offset_right = 616.0
+offset_bottom = 315.0
+text = "Help:
+
+Arrows or WASD to move
+Space, C, Up arrow or W to jump
+X or Left mouse button to throw shouriken (yes i know it's spelled shuriken)
+S or down arrow to DIE!!!!!!!!
+
+
+good luck and have fun!"
+
+[node name="Wunk2" type="Sprite2D" parent="Window"]
+position = Vector2(534, 234)
+scale = Vector2(0.263, 0.263)
+texture = ExtResource("1_11y2r")
+flip_h = true
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 30.0
+offset_top = 113.0
+offset_right = 113.0
+offset_bottom = 144.0
+scale = Vector2(0.376406, 0.921692)
+text = "HELP!!!!!!!!"
+
+[node name="Cat" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(218, 119)
+texture = ExtResource("5_b6cxs")
+hframes = 2
+vframes = 2
+script = ExtResource("6_aaywf")
+
+[node name="player" type="Node2D" parent="."]
+position = Vector2(326, 26)
+
+[connection signal="close_requested" from="Window" to="Window" method="_on_close_requested"]
+[connection signal="pressed" from="Button2" to="Window" method="_on_button_2_pressed"]

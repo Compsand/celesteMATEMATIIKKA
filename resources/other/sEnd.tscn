@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://d072dw2n83lwa"]
+
+[ext_resource type="Texture2D" uid="uid://c1cmflj440p6t" path="res://resources/graphics/title.png" id="1_vlixb"]
+[ext_resource type="Texture2D" uid="uid://uu0kn3fgehp0" path="res://resources/graphics/wunkglorp.jpg" id="2_bqqvv"]
+[ext_resource type="Texture2D" uid="uid://bkpbf8t05v5gr" path="res://resources/graphics/xplodesheet.png" id="3_ab5o0"]
+[ext_resource type="AudioStream" uid="uid://b7ju6l1o484p3" path="res://resources/sfx/deltarune-explosion.mp3" id="4_ab5o0"]
+[ext_resource type="Texture2D" uid="uid://bylwcyv3812bx" path="res://resources/other/funsky.png" id="5_ybj27"]
+
+[sub_resource type="GDScript" id="GDScript_q8f0v"]
+script/source = "extends Node2D
+
+func _process(delta: float) -> void:
+	$funskyR.rotation_degrees += delta * 3
+	$funskyG.rotation_degrees += delta * 8
+	$funskyB.rotation_degrees += delta * 16
+"
+
+[sub_resource type="GDScript" id="GDScript_ybj27"]
+script/source = "extends Button
+
+
+
+func _on_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://scenes/Menu.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_bqqvv"]
+script/source = "extends Sprite2D
+
+func _ready() -> void:
+	$Timer.start()
+	$sound.play()
+
+func _on_timer_timeout() -> void:
+	$Timer.start()
+	if frame == 16:
+		frame = 0
+		$sound.play()
+	else:
+		frame += 1
+"
+
+[node name="sEnd" type="Node2D"]
+
+[node name="skies" type="Node2D" parent="."]
+position = Vector2(128, 73)
+script = SubResource("GDScript_q8f0v")
+
+[node name="funskyR" type="Sprite2D" parent="skies"]
+modulate = Color(1, 0, 0, 1)
+z_index = -1
+position = Vector2(-1.52588e-05, 7.62939e-06)
+scale = Vector2(0.604479, 0.604479)
+texture = ExtResource("5_ybj27")
+
+[node name="funskyG" type="Sprite2D" parent="skies"]
+modulate = Color(0, 1, 0, 0.588235)
+z_index = -1
+position = Vector2(-1.52588e-05, 7.62939e-06)
+scale = Vector2(0.604479, 0.604479)
+texture = ExtResource("5_ybj27")
+
+[node name="funskyB" type="Sprite2D" parent="skies"]
+modulate = Color(0, 0, 1, 0.352941)
+z_index = -1
+position = Vector2(-1.52588e-05, 7.62939e-06)
+scale = Vector2(0.604479, 0.604479)
+texture = ExtResource("5_ybj27")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 131.0
+offset_bottom = 144.0
+text = "
+the end 
+(secret ending)
+
+wow
+"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 96.0
+offset_bottom = 27.0
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(51, 16)
+texture = ExtResource("1_vlixb")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 52.0
+offset_top = 83.0
+offset_right = 165.0
+offset_bottom = 136.0
+text = "return to title"
+script = SubResource("GDScript_ybj27")
+
+[node name="Wunkglorp" type="Sprite2D" parent="."]
+position = Vector2(209, 88)
+scale = Vector2(0.111, 0.111)
+texture = ExtResource("2_bqqvv")
+
+[node name="Xplodesheet" type="Sprite2D" parent="."]
+position = Vector2(211, 82.85)
+scale = Vector2(0.43, 0.43)
+texture = ExtResource("3_ab5o0")
+hframes = 17
+script = SubResource("GDScript_bqqvv")
+
+[node name="Timer" type="Timer" parent="Xplodesheet"]
+wait_time = 0.05
+
+[node name="sound" type="AudioStreamPlayer" parent="Xplodesheet"]
+stream = ExtResource("4_ab5o0")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="timeout" from="Xplodesheet/Timer" to="Xplodesheet" method="_on_timer_timeout"]
