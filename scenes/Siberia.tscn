@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://d2fdo4gw061nq"]
+[gd_scene load_steps=15 format=4 uid="uid://d2fdo4gw061nq"]
 
 [ext_resource type="Texture2D" uid="uid://b5g15t6tq60rp" path="res://resources/graphics/sign.jpg" id="1_x8tav"]
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="2_8ynil"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dvxriyr1rduca" path="res://resources/other/cat.png" id="6_7vgpf"]
 [ext_resource type="AudioStream" uid="uid://cak0oiuh82e1p" path="res://resources/music/soberia craze.mp3" id="6_pvq5x"]
 [ext_resource type="Script" uid="uid://dywvchmr0vvrb" path="res://scenes/cat.gd" id="7_pvq5x"]
+[ext_resource type="Texture2D" uid="uid://bb33b6bv8kaxa" path="res://resources/graphics/siamese.jpg" id="9_jwh6e"]
 
 [sub_resource type="GDScript" id="GDScript_8ynil"]
 script/source = "extends Area2D
@@ -64,6 +65,16 @@ texture = ExtResource("2_x8tav")
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 17
 sources/0 = SubResource("TileSetAtlasSource_lp2f5")
+
+[sub_resource type="GDScript" id="GDScript_uylkd"]
+script/source = "extends Sprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if Global.hardmode == false:
+		queue_free()
+"
 
 [node name="Siberia" type="Node2D"]
 
@@ -177,5 +188,11 @@ flip_h = true
 hframes = 2
 vframes = 2
 script = ExtResource("7_pvq5x")
+
+[node name="Siamese" type="Sprite2D" parent="."]
+position = Vector2(-124, -236)
+scale = Vector2(0.051, 0.051)
+texture = ExtResource("9_jwh6e")
+script = SubResource("GDScript_uylkd")
 
 [connection signal="area_entered" from="levelChange" to="levelChange" method="_on_area_entered"]

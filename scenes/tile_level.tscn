@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://huf13jgjrx20"]
+[gd_scene load_steps=19 format=4 uid="uid://huf13jgjrx20"]
 
 [ext_resource type="PackedScene" uid="uid://bncrlqrpm83hi" path="res://scenes/player.tscn" id="1_1ps0d"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_qxeu4"]
@@ -63,6 +63,16 @@ func _on_area_entered(area: Area2D) -> void:
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31ua4"]
 size = Vector2(34, 11)
+
+[sub_resource type="GDScript" id="GDScript_6vdt2"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if Global.hardmode == false:
+		queue_free()
+"
 
 [node name="testLevel" type="Node2D"]
 
@@ -184,6 +194,104 @@ script = SubResource("GDScript_1a1co")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(556, 174)
 shape = SubResource("RectangleShape2D_31ua4")
+
+[node name="EVILOBJECTS" type="Node" parent="."]
+script = SubResource("GDScript_6vdt2")
+
+[node name="killzone" type="Area2D" parent="EVILOBJECTS"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(158, -45)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(193, -76)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D2"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(239, -128)
+rotation = 3.14159
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D3"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(25, -127)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D4"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(103, -305)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D5"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(768, -319)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D6"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(791, -319)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D7"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(815, -319)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D8"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(479, -319)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D9"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
+
+[node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="EVILOBJECTS/killzone"]
+position = Vector2(415, -144)
+polygon = PackedVector2Array(31, 0, 21, 16, 40, 16)
+
+[node name="Wunk" type="Sprite2D" parent="EVILOBJECTS/killzone/CollisionPolygon2D10"]
+position = Vector2(31, 8.3125)
+scale = Vector2(0.04, 0.03325)
+texture = ExtResource("4_ashii")
 
 [connection signal="area_entered" from="levelChange" to="levelChange" method="_on_area_entered"]
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
