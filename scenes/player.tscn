@@ -42,8 +42,12 @@ func KILL():
 		print(\"math was too hard, died\")
 
 func genMath():
-	math1 = randi() % 8 + 2
-	math2 = randi() % 8 + 2
+	if Global.hardmode == false:
+		math1 = randi() % 8 + 2
+		math2 = randi() % 8 + 2
+	else:
+		math1 = randi() % 13 + 2
+		math2 = randi() % 13 + 2
 	$Camera2D/mathSquare/mathQuestion.text = str(math1,\"*\",math2)
 	$Camera2D/mathSquare/mathField.text = \"\"
 	$Camera2D/mathSquare/mathField.placeholder_text = \"ANSWER\"
@@ -337,6 +341,7 @@ offset_bottom = 94.0
 theme_override_fonts/font = ExtResource("2_g2els")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_tuyoq")
 placeholder_text = "answer"
+virtual_keyboard_type = 2
 
 [node name="submitButton" type="Button" parent="Camera2D/mathSquare"]
 layout_mode = 0

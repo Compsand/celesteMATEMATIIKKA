@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cyilerake8w6f"]
+[gd_scene load_steps=13 format=3 uid="uid://cyilerake8w6f"]
 
 [ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="1_11y2r"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_upctu"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://be70bspr3vfme" path="res://resources/graphics/ninja.png" id="4_o0tnf"]
 [ext_resource type="Texture2D" uid="uid://dvxriyr1rduca" path="res://resources/other/cat.png" id="5_b6cxs"]
 [ext_resource type="Script" uid="uid://dywvchmr0vvrb" path="res://scenes/cat.gd" id="6_aaywf"]
+[ext_resource type="AudioStream" uid="uid://bem6kvmemvvnx" path="res://resources/sfx/wasap.wav" id="7_1abgu"]
+[ext_resource type="Texture2D" uid="uid://bvl1m3owm74sy" path="res://resources/graphics/hardTitle.png" id="7_aaywf"]
+[ext_resource type="AudioStream" uid="uid://xah2c7fkaqou" path="res://resources/sfx/sword.mp3" id="7_yt8fu"]
 
 [sub_resource type="GDScript" id="GDScript_xdvgc"]
 script/source = "extends Button
@@ -34,6 +37,27 @@ func _on_button_2_pressed() -> void:
 		get_tree().change_scene_to_file(\"res://scenes/help.tscn\")
 	else:
 		visible = true
+"
+
+[sub_resource type="GDScript" id="GDScript_b6cxs"]
+script/source = "extends Button
+
+
+func _ready() -> void:
+	if Global.hardmode == true:
+		$\"../HardTitle\".visible = true
+	else:
+		$\"../HardTitle\".visible = false
+
+func _on_pressed() -> void:
+	if Global.hardmode == false:
+		Global.hardmode = true
+		$\"../HardTitle\".visible = true
+		$Sword.play()
+	else:
+		Global.hardmode = false
+		$\"../HardTitle\".visible = false
+		$Wasap.play()
 "
 
 [node name="Menu" type="Node2D"]
@@ -189,5 +213,28 @@ script = ExtResource("6_aaywf")
 [node name="player" type="Node2D" parent="."]
 position = Vector2(326, 26)
 
+[node name="Button3" type="Button" parent="."]
+offset_left = 195.0
+offset_top = 111.0
+offset_right = 290.0
+offset_bottom = 142.0
+scale = Vector2(0.56, 1)
+text = "hard mode"
+script = SubResource("GDScript_b6cxs")
+
+[node name="Sword" type="AudioStreamPlayer" parent="Button3"]
+stream = ExtResource("7_yt8fu")
+pitch_scale = 0.5
+
+[node name="Wasap" type="AudioStreamPlayer" parent="Button3"]
+stream = ExtResource("7_1abgu")
+
+[node name="HardTitle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(140, 20)
+scale = Vector2(2.3, 2.3)
+texture = ExtResource("7_aaywf")
+
 [connection signal="close_requested" from="Window" to="Window" method="_on_close_requested"]
 [connection signal="pressed" from="Button2" to="Window" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
