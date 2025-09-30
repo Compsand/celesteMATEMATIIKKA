@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dkr8j7jen3h5n"]
+[gd_scene load_steps=5 format=3 uid="uid://dkr8j7jen3h5n"]
 
 [ext_resource type="Script" uid="uid://dt6l160hyr444" path="res://scenes/jump_enemy.gd" id="1_51t6f"]
 [ext_resource type="Texture2D" uid="uid://bxe7eft0j4q25" path="res://resources/graphics/hotdog.png" id="2_1a3s6"]
+[ext_resource type="AudioStream" uid="uid://xah2c7fkaqou" path="res://resources/sfx/sword.mp3" id="3_1a3s6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_51t6f"]
 size = Vector2(19, 14)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_51t6f")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
@@ -18,8 +21,13 @@ scale = Vector2(0.4125, 0.414063)
 texture = ExtResource("2_1a3s6")
 
 [node name="killZone" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killZone"]
 shape = SubResource("RectangleShape2D_51t6f")
+
+[node name="Sword" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1a3s6")
 
 [connection signal="area_entered" from="killZone" to="." method="_on_kill_zone_area_entered"]
