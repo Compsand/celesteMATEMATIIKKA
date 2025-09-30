@@ -99,9 +99,9 @@ scale = Vector2(2.46516, 4.45481)
 theme_override_fonts/normal_font = ExtResource("3_pt5ei")
 text = "siberia>"
 
-[node name="CharacterBody2D10" parent="Sign" instance=ExtResource("4_1a1co")]
-position = Vector2(-1449.33, -157.355)
-scale = Vector2(2.53287, 2.53287)
+[node name="CharacterBody2D10" parent="." instance=ExtResource("4_1a1co")]
+position = Vector2(104, 6.99999)
+scale = Vector2(1, 1)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("4_3yr0r")]
 position = Vector2(223, -280)
