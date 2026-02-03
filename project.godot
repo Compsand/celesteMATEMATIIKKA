@@ -28,7 +28,7 @@ window/size/viewport_width=256
 window/size/viewport_height=144
 window/size/mode=2
 window/subwindows/embed_subwindows=false
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://cwxnr4xq00y1a"
 mouse_cursor/custom_image_hotspot=Vector2(0, 16)
 

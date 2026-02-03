@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://b8teihu64ea7m"]
+[gd_scene load_steps=16 format=4 uid="uid://b8teihu64ea7m"]
 
 [ext_resource type="Texture2D" uid="uid://brqfk88ouy8dq" path="res://resources/graphics/tilesetC.png" id="1_dlpyv"]
 [ext_resource type="Texture2D" uid="uid://c73fvljicos4v" path="res://resources/graphics/rocket.png" id="1_sb52s"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dj5f1tjryowji" path="res://scenes/enemy.tscn" id="4_f2vlw"]
 [ext_resource type="AudioStream" uid="uid://xah2c7fkaqou" path="res://resources/sfx/sword.mp3" id="5_mi75y"]
 [ext_resource type="PackedScene" uid="uid://y37db4quh7x4" path="res://scenes/shouriken.tscn" id="6_dlpyv"]
+[ext_resource type="PackedScene" uid="uid://dkr8j7jen3h5n" path="res://scenes/jumpEnemy.tscn" id="9_ngvuy"]
+[ext_resource type="AudioStream" uid="uid://cilc4ngx5bh5" path="res://resources/sfx/swordS.wav" id="10_pdhkm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3yr0r"]
 texture = ExtResource("1_dlpyv")
@@ -47,6 +49,16 @@ func _on_area_entered(area: Area2D) -> void:
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_161k1"]
 size = Vector2(20, 56)
+
+[sub_resource type="GDScript" id="GDScript_ngvuy"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if Global.hardmode == false:
+		queue_free()
+"
 
 [node name="testLevel" type="Node2D"]
 
@@ -107,7 +119,7 @@ position = Vector2(159, 38)
 position = Vector2(124, -165)
 
 [node name="CharacterBody2D5" parent="." instance=ExtResource("4_f2vlw")]
-position = Vector2(80, -87)
+position = Vector2(96, -56)
 
 [node name="CharacterBody2D6" parent="." instance=ExtResource("4_f2vlw")]
 position = Vector2(67, 31)
@@ -153,5 +165,44 @@ position = Vector2(577, -328)
 
 [node name="CharacterBody2D18" parent="." instance=ExtResource("4_f2vlw")]
 position = Vector2(594, -296)
+
+[node name="CharacterBody2D19" parent="." instance=ExtResource("9_ngvuy")]
+position = Vector2(816, -280)
+
+[node name="EVIL CHGINA" type="Node" parent="."]
+script = SubResource("GDScript_ngvuy")
+
+[node name="CharacterBody2D20" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(400, -264)
+
+[node name="CharacterBody2D21" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(424, -264)
+
+[node name="CharacterBody2D22" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(512, -344)
+
+[node name="CharacterBody2D23" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(712, -376)
+
+[node name="CharacterBody2D24" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(320, -280)
+
+[node name="CharacterBody2D25" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(192, -184)
+
+[node name="CharacterBody2D26" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(240, -40)
+
+[node name="CharacterBody2D27" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(536, 24)
+
+[node name="CharacterBody2D28" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(136, 8)
+
+[node name="CharacterBody2D29" parent="EVIL CHGINA" instance=ExtResource("9_ngvuy")]
+position = Vector2(40, -120)
+
+[node name="sord" type="AudioStreamPlayer" parent="EVIL CHGINA"]
+stream = ExtResource("10_pdhkm")
 
 [connection signal="area_entered" from="levelChange" to="levelChange" method="_on_area_entered"]

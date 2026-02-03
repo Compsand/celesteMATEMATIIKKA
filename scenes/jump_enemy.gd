@@ -1,20 +1,35 @@
 extends CharacterBody2D
- 
-func _process(_delta: float) -> void: movement()
 
-func movement():
-	velocity.x = -50
-	if is_on_wall() and velocity.x == -50:
-		velocity.x = 50
-		print()
-	elif is_on_wall() and velocity.x == 50:
-		velocity.x = -50
-	if is_on_floor_only():
-		velocity.y = -50
+var go = true
+var goTimer = 100
+
+
+func leftMovementJ():
+	if go == true : 
+		velocity.x = 150
+	else: 
+		velocity.x = -150
 		
-	get_gravity()
+	if is_on_wall() and goTimer < 0:
+		if go == true : 
+			go = false
+			goTimer = 10
+		else: 
+			go = true
+			goTimer = 10
+	
+	goTimer -= 1
 	move_and_slide()
+	print(get_gravity())
 
+	if is_on_floor():
+		velocity.y = -150
+		print("on flor")
+	else:
+		velocity.y += get_gravity().y/100
+		print("in air")
+		
+func _physics_process(_delta: float) -> void: leftMovementJ()
 
 
 

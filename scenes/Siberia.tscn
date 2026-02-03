@@ -80,10 +80,10 @@ func _ready() -> void:
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -4
-offset_left = -2871.0
-offset_top = -1808.0
-offset_right = 6469.0
-offset_bottom = 2005.0
+offset_left = -3619.0
+offset_top = -1813.0
+offset_right = 5721.0
+offset_bottom = 2000.0
 color = Color(0.0317551, 0.0500204, 0.124735, 1)
 
 [node name="levelChange" type="Area2D" parent="."]
