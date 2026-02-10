@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://blv75cy05f322"
+path="res://.godot/imported/evil math main menu true.wav-321bdbeb5b3e1a29334c417e106d786a.sample"
+
+[deps]
+
+source_file="res://scenes/evil math main menu true.wav"
+dest_files=["res://.godot/imported/evil math main menu true.wav-321bdbeb5b3e1a29334c417e106d786a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

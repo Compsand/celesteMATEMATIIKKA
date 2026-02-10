@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://cyilerake8w6f"]
+[gd_scene load_steps=14 format=3 uid="uid://cyilerake8w6f"]
 
+[ext_resource type="AudioStream" uid="uid://cesexeheo87qc" path="res://resources/music/evil math main menu true.wav" id="1_4umqm"]
 [ext_resource type="Texture2D" uid="uid://tuw6jeeehtgs" path="res://resources/graphics/wunk.jpg" id="1_11y2r"]
 [ext_resource type="Texture2D" uid="uid://f4oxf6ijctpr" path="res://resources/graphics/tree1.png" id="1_upctu"]
 [ext_resource type="Texture2D" uid="uid://c1cmflj440p6t" path="res://resources/graphics/title.png" id="1_xdvgc"]
@@ -61,6 +62,11 @@ func _on_pressed() -> void:
 "
 
 [node name="Menu" type="Node2D"]
+
+[node name="EvilMathMainMenuTrue" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_4umqm")
+volume_db = 22.029
+autoplay = true
 
 [node name="Wunk" type="Sprite2D" parent="."]
 position = Vector2(209, 91)
